@@ -1,6 +1,6 @@
 {
     "version": "v1.2.0",
-    "url": "https://files.catbox.moe/kt230d.bin",
-    "size": 50952714,
-    "notes": "Auto-queue links (Discord + Flood Feed), Start Automation button, always-visible log, spacing fixes, auto-SSO login, OTP/2FA handling, BetOnline support, IPC server"
+    "url": "https://github.com/Darkusi/CasinoBot/releases/download/v1.2.0/CasinoBot.exe",
+    "size": 50963268,
+    "notes": "v1.2.0 - License tab, Profiles tab, .env Discord token, Start Automation guard, 50 license keys"
 }

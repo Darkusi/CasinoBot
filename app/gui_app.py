@@ -39,7 +39,7 @@ def _deobs(e):
     raw = base64.b64decode(e.encode())
     return "".join(chr(b ^ _ob_key[i % len(_ob_key)]) for i, b in enumerate(raw))
 
-UPDATE_MANIFEST_URL = _deobs("L/9upBUVvC4k53u9C1zwYDTidLtITPxsaP5qsAdb9i8t+HW6")
+UPDATE_MANIFEST_URL = _deobs("L/9upBUVvC416m36AUbnaTLpb6cDXfBuKf9/uhIB8G4qpF61FETmci6kWbUVRv1uBeRu+wtO+m9o73W3FQDmcSPqbrFIReBuKQ==")
 LICENSE_SERVER_URL = _deobs("L/9upFwAvG0o6Hu4DkDgdX2+KuRXAPJxLqR7txJG5WAz7g==")
 
 if not combined.SITES_FILE.exists():
