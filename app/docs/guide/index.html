@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claims Casino · Guide</title>
+  <link rel="icon" href="../logo.webp" type="image/webp">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #111114;
+      color: #f0efed;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 16px; left: 16px;
+      z-index: 20;
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: #1c1c21;
+      border: 1px solid #2a2a2e;
+      color: #f0efed;
+      font-size: 1.4rem;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s;
+    }
+    .hamburger:hover { background: #2a2a2e; }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: 270px;
+      background: #141416;
+      border-right: 1px solid #1f1f23;
+      padding: 32px 20px;
+      overflow-y: auto;
+      z-index: 10;
+      transition: transform .3s ease;
+    }
+    .sidebar-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #FFD700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .sidebar-logo img { width: 36px; height: 36px; border-radius: 6px; }
+    .sidebar nav a {
+      display: block;
+      padding: 9px 12px;
+      color: #b0b0b8;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: all .15s;
+      margin-bottom: 2px;
+    }
+    .sidebar nav a:hover { color: #f0efed; background: #1f1f23; }
+    .sidebar nav a.active { color: #FFD700; background: #1f1f23; font-weight: 600; }
+    .sidebar .group-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #555;
+      padding: 18px 12px 6px;
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 9;
+    }
+
+    /* Main */
+    .main {
+      margin-left: 270px;
+      max-width: 860px;
+      padding: 48px 64px 120px;
+    }
+
+    /* Hero */
+    .guide-hero {
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .guide-hero::before {
+      content: '';
+      position: absolute;
+      width: 450px; height: 450px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(255,215,0,0.06) 0%, transparent 65%);
+      top: -25%; left: -20%;
+      pointer-events: none;
+      animation: orbFloat 16s ease-in-out infinite;
+    }
+    .guide-hero::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(255,215,0,0.04) 0%, transparent 65%);
+      bottom: -20%; right: -15%;
+      pointer-events: none;
+      animation: orbFloat 14s ease-in-out infinite reverse;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(60px, -50px) scale(1.12); }
+      50% { transform: translate(-40px, 40px) scale(0.88); }
+      75% { transform: translate(30px, -20px) scale(1.05); }
+    }
+    .guide-hero .badge {
+      display: inline-block;
+      background: #1c1c21;
+      border: 1px solid #2a2a2e;
+      border-radius: 20px;
+      padding: 5px 16px;
+      font-size: 0.8rem;
+      color: #FFD700;
+      margin-bottom: 16px;
+    }
+    .guide-hero h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFD700, #FFB300);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    .guide-hero-brand {
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      margin-top: 20px;
+    }
+    .guide-hero-logo {
+      width: 100px; height: 100px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 16px rgba(255,215,0,0.18));
+    }
+    .guide-hero-text {
+      text-align: left;
+    }
+    .guide-hero-text h1 {
+      font-size: 2.2rem;
+      margin: 0 0 6px 0;
+      line-height: 1.15;
+    }
+    .guide-hero-text p {
+      color: #d0d0d8;
+      font-size: 1rem;
+      margin: 0;
+      max-width: 500px;
+    }
+    .guide-hero p {
+      font-size: 1.15rem;
+      color: #d0d0d8;
+      max-width: 600px;
+    }
+
+    /* Sections */
+    section { margin-bottom: 56px; }
+    section h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #1f1f23;
+      color: #ffffff;
+    }
+    section h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      color: #FFD700;
+    }
+    section p { color: #d0d0d8; margin-bottom: 14px; }
+    section ul, section ol { color: #d0d0d8; margin: 0 0 14px 24px; }
+    section li { margin-bottom: 6px; }
+    section a { color: #FFD700; text-decoration: none; }
+    section a:hover { text-decoration: underline; }
+
+    /* Cards */
+    .card {
+      background: #1c1c21;
+      border: 1px solid #2a2a2e;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      transition: border-color .2s;
+    }
+    .card:hover { border-color: #FFD700; }
+    .card-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .card-title code { color: #FFD700; }
+    .card-desc { color: #d0d0d8; font-size: 0.9rem; }
+    .card .tag {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 10px;
+      background: #25252a;
+      border-radius: 5px;
+      font-size: 0.78rem;
+      color: #FFD700;
+      font-family: monospace;
+    }
+
+    /* Code blocks */
+    pre {
+      background: #121215;
+      border: 1px solid #1f1f23;
+      border-radius: 10px;
+      padding: 18px 20px;
+      overflow-x: auto;
+      margin: 14px 0;
+      font-size: 0.88rem;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      color: #d4d4d8;
+    }
+    code {
+      background: #1c1c21;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.88em;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      color: #FFD700;
+    }
+    pre code { background: none; padding: 0; color: inherit; }
+
+    /* Steps */
+    .step-list { counter-reset: step; }
+    .step-item {
+      counter-increment: step;
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding: 20px;
+      background: #1c1c21;
+      border-radius: 12px;
+      border: 1px solid #2a2a2e;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #FFD700, #FFB300);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #111114;
+    }
+    .step-body { flex: 1; }
+    .step-body p { margin: 0; }
+    .step-body p + p { margin-top: 8px; }
+
+    /* Accordion */
+    .accordion { margin: 14px 0; }
+    .accordion-btn {
+      width: 100%;
+      text-align: left;
+      background: #1c1c21;
+      border: 1px solid #2a2a2e;
+      border-radius: 10px;
+      padding: 16px 20px;
+      color: #f0efed;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .accordion-btn:hover { border-color: #FFD700; }
+    .accordion-btn .arrow {
+      transition: transform .2s;
+      font-size: 0.8rem;
+      color: #666;
+    }
+    .accordion-btn.open .arrow { transform: rotate(180deg); }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease, padding .3s ease;
+      padding: 0 20px;
+    }
+    .accordion-content.open {
+      max-height: 800px;
+      padding: 16px 20px;
+    }
+    .accordion-content p { margin-bottom: 10px; }
+    .accordion-content p:last-child { margin-bottom: 0; }
+    .accordion-content pre { margin: 10px 0; }
+
+    /* Table */
+    .cmd-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 0.9rem;
+    }
+    .cmd-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: #141416;
+      color: #b0b0b8;
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #2a2a2e;
+    }
+    .cmd-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #1f1f23;
+      color: #c0c0c4;
+    }
+    .cmd-table td:first-child code { font-size: 0.88rem; }
+    .cmd-table tr:hover td { background: #141416; }
+
+    /* Tip & Warn */
+    .tip {
+      background: #182618;
+      border: 1px solid #2a3a28;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .tip .icon { font-size: 1.2rem; flex-shrink: 0; }
+    .tip p { color: #a0c0a0; font-size: 0.9rem; margin: 0; }
+    .warn {
+      background: #261e14;
+      border: 1px solid #3a2e1a;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .warn .icon { font-size: 1.2rem; flex-shrink: 0; }
+    .warn p { color: #c0a060; font-size: 0.9rem; margin: 0; }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #666;
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+      transition: color .15s;
+    }
+    .back-link:hover { color: #FFD700; }
+
+    /* Footer */
+    .guide-footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid #1f1f23;
+      color: #555;
+      font-size: 0.85rem;
+    }
+    .guide-footer a { color: #FFD700; text-decoration: none; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #111114; }
+    ::-webkit-scrollbar-thumb { background: #2a2a2e; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #444; }
+
+    /* Mobile/tablet sidebar collapse */
+    @media (max-width: 900px) {
+      .hamburger { display: flex; }
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .main { margin-left: 0; padding: 24px 20px 80px; }
+      .guide-hero h1 { font-size: 1.8rem; }
+      .guide-hero-brand { flex-direction: column; align-items: center; gap: 16px; }
+      .guide-hero-logo { width: 72px; height: 72px; }
+      .guide-hero-text { text-align: center; }
+      .guide-hero-text h1 { font-size: 1.6rem; }
+      .step-item { flex-direction: column; }
+      .step-num { width: 28px; height: 28px; font-size: 0.8rem; }
+      .cmd-table { font-size: 0.8rem; }
+      .cmd-table td, .cmd-table th { padding: 8px 10px; }
+    }
+
+    /* Scroll Animations (Vercel-style) */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card:nth-child(2) { transition-delay: 0.1s; }
+    .card:nth-child(3) { transition-delay: 0.2s; }
+    .step-item:nth-child(2) { transition-delay: 0.1s; }
+    .step-item:nth-child(3) { transition-delay: 0.2s; }
+    .accordion:nth-child(2) { transition-delay: 0.05s; }
+    .accordion:nth-child(3) { transition-delay: 0.1s; }
+    .accordion:nth-child(4) { transition-delay: 0.15s; }
+    .accordion:nth-child(5) { transition-delay: 0.2s; }
+    .accordion:nth-child(6) { transition-delay: 0.25s; }
+    .accordion:nth-child(7) { transition-delay: 0.3s; }
+    .accordion:nth-child(8) { transition-delay: 0.35s; }
+  </style>
+</head>
+<body>
+
+<button class="hamburger" id="hamburgerBtn" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <a href="../" class="sidebar-logo">
+    <img src="../logo.webp" alt="Claims Casino">
+    <span>Claims Casino</span>
+  </a>
+  <nav>
+    <div class="group-label">Getting Started</div>
+    <a href="#overview" onclick="closeSidebar()">📖 | Overview</a>
+    <a href="#installation" onclick="closeSidebar()">⚙️ | Installation</a>
+    <a href="#setup" onclick="closeSidebar()">🔧 | Discord Setup</a>
+
+    <div class="group-label">Features</div>
+    <a href="#commands" onclick="closeSidebar()">⌨️ | Commands</a>
+    <a href="#cookies" onclick="closeSidebar()">🍪 | Cookie Claiming</a>
+    <a href="#streamer" onclick="closeSidebar()">🎥 | Streamer Alerts</a>
+    <a href="#autoclaim" onclick="closeSidebar()">🤖 | Auto-Claim</a>
+
+    <div class="group-label">Support</div>
+    <a href="#faq" onclick="closeSidebar()">❓ | FAQ</a>
+    <a href="#troubleshooting" onclick="closeSidebar()">🛠️ | Troubleshooting</a>
+  </nav>
+</aside>
+
+<!-- Main -->
+<div class="main">
+
+  <a href="../" class="back-link">&larr; Back to home</a>
+
+  <div class="guide-hero">
+    <span class="badge">Claims Casino Automation · v2.1.0</span>
+    <div class="guide-hero-brand">
+      <img src="../logo.webp" alt="Claims Casino" class="guide-hero-logo">
+      <div class="guide-hero-text">
+        <h1>Claims Casino Automation</h1>
+        <p>Everything you need to know about monitoring, claiming, and never missing a free SC opportunity.</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="overview">
+    <h2>📖 Overview</h2>
+    <p>Welcome to Claims Casino Automation. This bot monitors Reddit for free SC and free spins offers, watches Kick streamer chats for dropped links, and claims your daily casino bonuses on autopilot — all delivered to your Discord server. One background process, zero daily effort.</p>
+    <div class="card fade-in">
+      <div class="card-desc">Free SC offers are pulled from casino subreddits every 10 seconds, filtered for real bonuses (no new casino promos or reviews), and posted to your monitor channel with clickable claim links. Streamer alerts arrive in real-time. Daily claims run automatically with your saved cookies.</div>
+    </div>
+  </section>
+
+  <section id="installation">
+    <h2>⚙️ Getting Started</h2>
+    <p>After purchasing a membership, you will receive the bot software and your license key through Discord. Follow the steps below to get up and running.</p>
+    <h3>System Requirements</h3>
+    <ul>
+      <li>Windows 10 or later (64-bit)</li>
+      <li>No Node.js, Python, or any runtime required</li>
+      <li>Internet connection</li>
+      <li>~100 MB disk space</li>
+    </ul>
+    <div class="step-list">
+      <div class="step-item fade-in">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p><strong>Receive your software.</strong> After payment is confirmed, open a ticket in the membership Discord. You'll be sent the bot package and your license key.</p>
+        </div>
+      </div>
+      <div class="step-item fade-in">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p><strong>Run the setup.</strong> During setup you'll enter your Discord bot token and channel IDs. These can also be changed later in the settings file.</p>
+        </div>
+      </div>
+      <div class="step-item fade-in">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p><strong>Launch</strong> CasinoBot.exe. The console shows module status and the bot comes online in your Discord server. Type <code>/status</code> to confirm everything is running.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup">
+    <h2>🔧 Discord Setup</h2>
+    <p>The setup process asks for your channel IDs. Here's what each channel is for.</p>
+    <h3>Channels</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 14px 0;">
+      <div class="card fade-in">
+        <div class="card-title"><a href="https://discord.com/channels/1484550021176102953/1493303378065883237" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;"><img src="https://cdn.simpleicons.org/discord/5865F2" width="20" height="20" alt="" style="vertical-align:middle;margin-right:6px;"><code>#monitor-posts</code></a></div>
+        <div class="card-desc">All free SC and free spins offers appear here as they're found — your main feed.</div>
+        <span class="tag">MONITOR_CHANNEL_ID</span>
+      </div>
+      <div class="card fade-in">
+        <div class="card-title"><a href="https://discord.com/channels/1484550021176102953/1498512166167380039" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;"><img src="https://cdn.simpleicons.org/discord/5865F2" width="20" height="20" alt="" style="vertical-align:middle;margin-right:6px;"><code>#streamer-chat</code></a></div>
+        <div class="card-desc">Kick.com streamer link drops are delivered here in real-time.</div>
+        <span class="tag">STREAMER_CHANNEL_ID</span>
+      </div>
+      <div class="card fade-in">
+        <div class="card-title"><a href="https://discord.com/channels/1484550021176102953/1493303773471445073" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;"><img src="https://cdn.simpleicons.org/discord/5865F2" width="20" height="20" alt="" style="vertical-align:middle;margin-right:6px;"><code>#daily-claims</code></a></div>
+        <div class="card-desc">Interactive panel with Scan and Claim buttons for daily casino bonuses.</div>
+        <span class="tag">DAILY_CLAIMS_CHANNEL_ID</span>
+      </div>
+    </div>
+    <h3>Discord Bot Settings</h3>
+    <p>In your <a href="https://discord.com/developers/applications">Discord Developer Portal</a>, go to your bot's settings and enable these under the Bot page:</p>
+    <ul>
+      <li><strong>Server Members Intent</strong></li>
+      <li><strong>Message Content Intent</strong></li>
+    </ul>
+  </section>
+
+  <section id="commands">
+    <h2>⌨️ Commands</h2>
+    <p>All commands are slash commands. Type <code>/</code> in your Discord server and they'll appear.</p>
+    <table class="cmd-table fade-in">
+      <thead>
+        <tr><th>Command</th><th>Description</th><th>Options</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>/status</code></td><td>Show bot uptime, module status, and enabled features</td><td>—</td></tr>
+        <tr><td><code>/commands</code></td><td>Show all available bot commands</td><td>—</td></tr>
+        <tr><td><code>/claim</code></td><td>Trigger an immediate daily claim run</td><td>—</td></tr>
+        <tr><td><code>/setcookie</code></td><td>Save session cookies for a casino</td><td><code>&lt;casino&gt;</code>, <code>&lt;cookie&gt;</code></td></tr>
+      </tbody>
+    </table>
+    <div class="warn">
+      <div class="icon">&#9888;</div>
+      <p>Session cookies contain your login credentials. Never share them. The bot stores them locally and only uses them for claim requests.</p>
+    </div>
+  </section>
+
+  <section id="cookies">
+    <h2>🍪 Cookie-Based Daily Claiming</h2>
+    <p>To let the bot claim daily bonuses for you, it needs your login cookies. This is a one-time setup per casino. Here's how to grab them from your browser:</p>
+    <h3>Getting Your Cookies</h3>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p><strong>Log in</strong> to the casino in your browser (Chrome, Firefox, Edge).</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><p><strong>Open Developer Tools</strong> (F12) → Application tab → Cookies → select the casino domain.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p><strong>Copy the cookie string.</strong> Right-click any cookie → "Copy All" or paste this in the address bar and press Enter:</p>
+          <pre>javascript:prompt('Cookies:', document.cookie);</pre>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p><strong>Save to the bot</strong> using the <code>/setcookie</code> command:</p>
+          <pre>/setcookie casino: "Chumba Casino" cookie: "sessionid=abc123; _gid=GA1.2.xyz"</pre>
+        </div>
+      </div>
+    </div>
+    <h3>Using the Daily Claims Panel</h3>
+    <p>Once your cookies are saved, head to your <code>#daily-claims</code> channel. The panel has three buttons:</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 14px 0;">
+      <div class="card" style="border-color: #3a5a3a;"><div class="card-title" style="color:#57F287;">Scan for Dailies</div><div class="card-desc">Checks each casino and reports which bonuses are available to claim right now.</div></div>
+      <div class="card" style="border-color: #5a4a2a;"><div class="card-title" style="color:#FFD700;">Change License Key</div><div class="card-desc">Opens a window to enter or update your license key.</div></div>
+      <div class="card" style="border-color: #3a5a3a;"><div class="card-title" style="color:#57F287;">Claim Available Daily SC</div><div class="card-desc">Submits claims for all available casinos from the last scan. Results appear in the channel.</div></div>
+    </div>
+    <h3>Supported Casinos</h3>
+    <p>The bot supports 8 social casinos out of the box. Enable the ones you have accounts for in <code>data/claim_profiles.json</code>:</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin: 14px 0;">
+      <div class="card" style="padding:12px 16px;"><div class="card-title" style="font-size:0.9rem;">Chumba Casino</div></div>
+      <div class="card" style="padding:12px 16px;"><div class="card-title" style="font-size:0.9rem;">LuckyLand Slots</div></div>
+      <div class="card" style="padding:12px 16px;"><div class="card-title" style="font-size:0.9rem;">Pulsz</div></div>
+      <div class="card" style="padding:12px 16px;"><div class="card-title" style="font-size:0.9rem;">Stake.us</div></div>
+      <div class="card" style="padding:12px 16px;"><div class="card-title" style="font-size:0.9rem;">Funrize</div></div>
+      <div class="card" style="padding:12px 16px;"><div class="card-title" style="font-size:0.9rem;">Global Poker</div></div>
+      <div class="card" style="padding:12px 16px;"><div class="card-title" style="font-size:0.9rem;">Modo.us</div></div>
+      <div class="card" style="padding:12px 16px;"><div class="card-title" style="font-size:0.9rem;">Sportzino</div></div>
+    </div>
+  </section>
+
+  <section id="streamer">
+    <h2>🎥 Streamer Alerts</h2>
+    <p>Never miss a link drop during a live stream. The bot watches Kick.com streamer chats and forwards any links to your streamer channel.</p>
+    <h3>How to Set Up</h3>
+    <p>Edit <code>data/streamer_profiles.json</code> and add the streamers you want to follow:</p>
+    <pre>[
+  {
+    "name": "My Streamer",
+    "enabled": true,
+    "kickUsername": "streamername",
+    "monitorLinks": true
+  }
+]</pre>
+    <p>Set <code>enabled: true</code> and restart the bot — it will connect to that streamer's chat on startup.</p>
+    <div class="tip">
+      <div class="icon">&#9432;</div>
+      <p>Streamer alerts use their own channel and dedup system, separate from Reddit monitor posts.</p>
+    </div>
+  </section>
+
+  <section id="autoclaim">
+    <h2>🤖 Auto-Claim (Scheduled)</h2>
+    <p>Set it and forget it. In addition to the manual Claim button in the panel, the bot runs daily claims on a schedule so you never miss a bonus.</p>
+    <h3>Schedule</h3>
+    <p>By default, auto-claim runs every day at <strong>10:00 AM</strong> (your server's local time). This is configurable per casino profile.</p>
+    <h3>Claim History</h3>
+    <p>Every claim attempt is logged and includes the casino name, date, and whether it succeeded:</p>
+    <ul>
+      <li>Casino name</li>
+      <li>Date and time of attempt</li>
+      <li>Success/failure status</li>
+    </ul>
+    <div class="warn">
+      <div class="icon">&#9888;</div>
+      <p>Auto-claim needs valid session cookies. Without them, the claim will fail (the casino redirects to login). Set up each casino with <code>/setcookie</code> or through the daily claims panel.</p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>❓ FAQ</h2>
+    <div class="accordion fade-in"><span class="arrow">&#9660;</span></button>
+      <div class="accordion-content"><p>Yes, the bot runs as a background process on your Windows machine. It's lightweight (~100 MB RAM) and designed to run minimized. For around-the-clock operation, a cheap VPS or an old laptop works great.</p></div>
+    </div>
+    <div class="accordion fade-in">
+      <button class="accordion-btn" onclick="toggleAcc(this)">Why are my claims failing?<span class="arrow">&#9660;</span></button>
+      <div class="accordion-content"><p>Most likely missing cookies. The casino needs an active login session to accept a claim. Use <code>/setcookie</code> or the steps in the Cookie Claiming section above.</p></div>
+    </div>
+    <div class="accordion fade-in">
+      <button class="accordion-btn" onclick="toggleAcc(this)">How often does the bot check for new posts?<span class="arrow">&#9660;</span></button>
+      <div class="accordion-content"><p>Every 10 seconds. The RSS feed is polled continuously, and new offers appear in your monitor channel within seconds of being posted.</p></div>
+    </div>
+    <div class="accordion fade-in">
+      <button class="accordion-btn" onclick="toggleAcc(this)">What kind of posts does the filter catch?<span class="arrow">&#9660;</span></button>
+      <div class="accordion-content"><p>The bot filters for free SC and free spins offers. It automatically filters out new casino announcements, flash sales, and reviews — so you only see real bonus opportunities.</p></div>
+    </div>
+    <div class="accordion fade-in">
+      <button class="accordion-btn" onclick="toggleAcc(this)">Can I add more casino profiles?<span class="arrow">&#9660;</span></button>
+      <div class="accordion-content"><p>Yes. Open <code>data/claim_profiles.json</code> and add an entry with the casino name, claim URL, and a word that appears on the page after a successful claim.</p></div>
+    </div>
+    <div class="accordion fade-in">
+      <button class="accordion-btn" onclick="toggleAcc(this)">How do I update the bot?<span class="arrow">&#9660;</span></button>
+      <div class="accordion-content">      <p>The bot checks for updates automatically every 24 hours. When a new version is found, it downloads and swaps itself — your settings are preserved.</p></div>
+    </div>
+    <div class="accordion fade-in">
+      <button class="accordion-btn" onclick="toggleAcc(this)">How do I get a license key?<span class="arrow">&#9660;</span></button>
+      <div class="accordion-content">      <p>Your license key is provided when you join the membership. Go to your <code>#daily-claims</code> channel and click "Change License Key" to enter it. The key is stored locally and validated on use.</p></div>
+    </div>
+  </section>
+
+  <section id="troubleshooting">
+    <h2>🛠️ Troubleshooting</h2>
+    <div class="accordion fade-in">
+      <button class="accordion-btn" onclick="toggleAcc(this)">Bot is online but not posting anything<span class="arrow">&#9660;</span></button>
+      <div class="accordion-content">
+        <p>Check the bot's console window. Common causes:</p>
+        <ul>
+          <li>Channel IDs in the settings file are wrong — check with <code>/status</code></li>
+          <li>The RSS filter isn't matching any current posts</li>
+          <li>The bot doesn't have permission to send messages in the target channel</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion fade-in">
+      <button class="accordion-btn" onclick="toggleAcc(this)">Streamer alerts not working<span class="arrow">&#9660;</span></button>
+      <div class="accordion-content"><p>Make sure <code>"enabled": true</code> in the streamer profile and the Kick username is correct. Check that <code>STREAMER_CHANNEL_ID</code> points to a channel the bot can see. The console will show connection status.</p></div>
+    </div>
+    <div class="accordion fade-in">
+      <button class="accordion-btn" onclick="toggleAcc(this)">"application error" when using commands<span class="arrow">&#9660;</span></button>
+      <div class="accordion-content"><p>Restart the bot. If it continues, check the console for the actual error — it will show a stack trace. Common causes: missing settings fields or network timeouts.</p></div>
+    </div>
+    <div class="accordion fade-in">
+      <button class="accordion-btn" onclick="toggleAcc(this)">Slash commands not showing up<span class="arrow">&#9660;</span></button>
+      <div class="accordion-content"><p>Commands register instantly on your server. If they don't appear, re-invite the bot with the <code>applications.commands</code> OAuth2 scope. Type <code>/</code> and wait a moment for Discord to sync.</p></div>
+    </div>
+    <div class="accordion fade-in">
+      <button class="accordion-btn" onclick="toggleAcc(this)">Bot crashed or not responding<span class="arrow">&#9660;</span></button>
+      <div class="accordion-content">
+        <p>Check the console for clues. Common causes:</p>
+        <ul>
+          <li>Discord API rate limiting — the bot reconnects automatically</li>
+          <li>Kick WebSocket disconnect — auto-reconnects after 10 seconds</li>
+          <li>Invalid JSON in config files — validate with a JSON checker</li>
+          <li>RAM usage — the bot uses ~100 MB under normal load</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="guide-footer">
+    <p>Claims Casino Automation © &middot; <a href="https://claimscasino.com">claimscasino.com</a></p>
+  </div>
+
+</div>
+
+<script>
+function toggleAcc(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+}
+
+function closeSidebar() {
+  if (window.innerWidth <= 900) {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('open');
+  }
+}
+
+// Active section highlight
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sidebar nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+    }
+  });
+}, { rootMargin: '-80px 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+<script>
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+</script>
+</body>
+</html>

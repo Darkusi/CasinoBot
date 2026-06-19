@@ -1,0 +1,16 @@
+node_modules/
+.env
+build/
+*.log
+CasinoBot.exe
+src/node_modules/
+src/.env
+src/data/seen_posts.json
+src/data/claim_history.json
+src/data/settings.json
+
+__pycache__/
+*.pyc
+*.dat
+dist/
+*.txt

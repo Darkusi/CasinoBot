@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claims Casino · Premium Sweepstakes Membership</title>
+  <link rel="icon" href="logo.webp" type="image/webp">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>if('scrollRestoration' in history)history.scrollRestoration='manual';window.scrollTo(0,0);window.addEventListener('pageshow',function(){setTimeout(function(){window.scrollTo(0,0)},0)});window.addEventListener('load',function(){window.scrollTo(0,0)})</script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #111114;
+      color: #f0efed;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 32px; width: 100%; }
+    .hero .container { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 48px; padding: 40px 32px; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      text-align: center;
+      background: linear-gradient(180deg, #1c1c21 0%, #111114 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 550px; height: 550px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(255,215,0,0.06) 0%, transparent 65%);
+      top: -20%; left: -15%;
+      pointer-events: none;
+      animation: orbFloat 16s ease-in-out infinite;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(255,215,0,0.04) 0%, transparent 65%);
+      bottom: -15%; right: -10%;
+      pointer-events: none;
+      animation: orbFloat 14s ease-in-out infinite reverse;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(60px, -50px) scale(1.12); }
+      50% { transform: translate(-40px, 40px) scale(0.88); }
+      75% { transform: translate(30px, -20px) scale(1.05); }
+    }
+    /* Cart animation */
+    .buy-btn i { transition: transform .2s ease; display: inline-block; }
+    .buy-btn:hover i { animation: cartShake .4s ease; }
+    .buy-btn.adding i { animation: cartBounce .5s ease; }
+    .buy-btn.adding::after {
+      content: '+1'; position: absolute; font-size: 0.75rem; font-weight: 700;
+      color: #22c55e; top: -8px; right: -8px; opacity: 0;
+      animation: floatUp .6s ease forwards;
+    }
+    @keyframes cartShake { 0%,100%{transform:rotate(0)} 25%{transform:rotate(-8deg)} 50%{transform:rotate(8deg)} 75%{transform:rotate(-4deg)} }
+    @keyframes cartBounce { 0%{transform:scale(1)} 30%{transform:scale(1.3)rotate(-10deg)} 60%{transform:scale(0.9)rotate(5deg)} 100%{transform:scale(1)rotate(0)} }
+    @keyframes floatUp { 0%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-20px)} }
+    /* Glass fallback */
+    @supports not (backdrop-filter: blur(1px)) {
+      .pricing-card, .benefit-card, .modal { background: #1c1c21; }
+    }
+    .hero-logo {
+      width: 120px; height: 120px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 20px rgba(255,215,0,0.2));
+      animation: coinFlip 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      backface-visibility: hidden;
+    }
+    @keyframes coinFlip {
+      0%   { transform: rotateY(0deg) scale(0.7); opacity: 0; }
+      15%  { transform: rotateY(540deg) scale(1.15); opacity: 1; }
+      35%  { transform: rotateY(1260deg) scale(0.9); }
+      55%  { transform: rotateY(1800deg) scale(1.08); }
+      75%  { transform: rotateY(1980deg) scale(0.96); }
+      100% { transform: rotateY(2160deg) scale(1); opacity: 1; }
+    }
+    .hero-brand {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 28px;
+      perspective: 800px;
+      transform-style: preserve-3d;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: #FFD700;
+      opacity: 0.55;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      animation: fadeInUp 1s ease 2.2s both;
+    }
+    .hero-arrow i {
+      font-size: 0.9rem;
+      animation: bounceDown 2s ease-in-out infinite;
+    }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); opacity: 0.5; }
+      50% { transform: translateY(5px); opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .section-scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin: 36px 0 24px;
+      color: #FFD700;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+    .section-scroll-hint i {
+      font-size: 0.9rem;
+      animation: bounceDown 2s ease-in-out infinite;
+    }
+    .hero-brand-text { text-align: left; }
+    .hero-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #FFD700;
+      background: rgba(255,215,0,0.08);
+      border: 1px solid rgba(255,215,0,0.15);
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+    .hero-brand-text h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFD700, #FFB300);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 0 8px 0;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+    .hero-brand-text .hero-subtitle {
+      font-size: 1.15rem;
+      color: #d0d0d8;
+      margin: 0 0 12px 0;
+      max-width: 480px;
+    }
+    .hero-brand-text .hero-blurb {
+      font-size: 0.95rem;
+      color: #999;
+      margin: 0 0 20px 0;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .hero-stats span {
+      font-size: 0.85rem;
+      color: #b0b0b8;
+      font-weight: 500;
+      padding: 0 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 38px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all .2s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-lg { padding: 18px 48px; font-size: 1.1rem; }
+    .btn-primary {
+      background: linear-gradient(135deg, #FFD700, #FFB300);
+      color: #111114;
+      box-shadow: 0 4px 20px rgba(255,215,0,0.2);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(255,215,0,0.35); }
+    .btn-secondary {
+      background: transparent;
+      color: #f0efed;
+      border: 1px solid #3a3a40;
+    }
+    .btn-secondary:hover { border-color: #FFD700; color: #FFD700; transform: translateY(-2px); }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    section h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #ffffff;
+    }
+    section > .container > p {
+      text-align: center;
+      color: #d0d0d8;
+      margin-bottom: 36px;
+      font-size: 1.05rem;
+    }
+
+    /* Benefits */
+    .benefits { background: #111114; }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    .benefit-card {
+      background: rgba(28, 28, 33, 0.65);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 36px 32px;
+      transition: all .25s ease;
+    }
+    .benefit-card:hover { border-color: #FFD700; transform: translateY(-6px); box-shadow: 0 12px 40px rgba(255,215,0,0.08); }
+    .benefit-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; color: #ffffff; }
+    .benefit-card p { color: #d0d0d8; font-size: 0.95rem; line-height: 1.65; }
+
+    /* Pricing */
+    .pricing {
+      background: linear-gradient(180deg, #111114 0%, #1c1c21 100%);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      align-items: start;
+    }
+    .pricing-card {
+      background: rgba(28, 28, 33, 0.65);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 44px 36px;
+      text-align: center;
+      transition: all .25s ease;
+      position: relative;
+    }
+    .pricing-card:hover { border-color: #FFD700; transform: translateY(-4px); box-shadow: 0 12px 40px rgba(255,215,0,0.08); }
+    .pricing-card.popular {
+      border-color: rgba(255, 215, 0, 0.3);
+      box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.3), 0 12px 40px rgba(255,215,0,0.1);
+      transform: scale(1.03);
+      position: relative;
+      z-index: 2;
+      background: rgba(28, 28, 33, 0.75);
+    }
+    .pricing-card.popular:hover { transform: scale(1.03) translateY(-4px); z-index: 3; }
+    .pricing-badge {
+      position: absolute;
+      top: -12px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      background: #FFD700;
+      color: #111114;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .pricing-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; color: #ffffff; }
+    .pricing-card .price {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #FFD700;
+      margin-bottom: 4px;
+    }
+    .pricing-card .price-sub {
+      color: #888;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+    }
+    .pricing-card .features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+    .pricing-card .features li {
+      padding: 8px 0;
+      color: #d0d0d8;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-card .features li i {
+      color: #fff;
+      font-size: 0.8rem;
+      width: 18px;
+      flex-shrink: 0;
+    }
+    .pricing-card .btn { width: 100%; justify-content: center; }
+
+    /* Crypto Accepted */
+    .crypto-accepted { background: #111114; }
+    .crypto-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .crypto-item {
+      background: rgba(28, 28, 33, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 22px 16px;
+      text-align: center;
+      transition: all .2s ease;
+    }
+    .crypto-item:hover { border-color: #FFD700; transform: translateY(-3px); }
+    .crypto-item .crypto-icon { font-size: 1.8rem; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; }
+    .crypto-item .name { color: #f0efed; font-weight: 600; font-size: 0.8rem; }
+    .crypto-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    .crypto-ticker { font-weight: 700; font-size: 0.9rem; }
+
+    /* Testimonials */
+    .testimonials { background: #111114; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+    .testimonial-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      transition: all .25s ease;
+      height: 320px;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(255,215,0,0.06); }
+    .testimonial-card img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .testimonial-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(transparent, rgba(0,0,0,0.88));
+      pointer-events: none;
+    }
+    .testimonial-card .testimonial-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 14px 16px 16px;
+      text-align: center;
+      z-index: 2;
+    }
+    .testimonial-card .testimonial-caption .win { color: #22c55e; font-weight: 700; font-size: 1.1rem; margin-bottom: 2px; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+    .testimonial-card .testimonial-caption .risk { color: #ddd; font-size: 0.8rem; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 900;
+      background: rgba(17, 17, 20, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #f0efed; font-weight: 700; font-size: 0.95rem; }
+    .nav-brand img { width: 28px; height: 28px; border-radius: 50%; }
+    .nav-profile {
+      background: none; border: none; color: #f0efed; cursor: pointer;
+      font-size: 1.6rem; transition: color .15s; display: flex; align-items: center;
+    }
+    .nav-profile:hover { color: #FFD700; }
+    .nav-profile-wrapper { position: relative; display: inline-block; }
+    .profile-dropdown {
+      position: absolute; top: 100%; right: 0; margin-top: 8px;
+      background: rgba(28,28,33,0.95); backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+      padding: 6px; min-width: 180px; opacity: 0; visibility: hidden;
+      transform: translateY(-4px); transition: all .2s ease; z-index: 1000;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .profile-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .profile-dropdown-item {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      border-radius: 8px; cursor: pointer; color: #ccc; font-size: 0.85rem;
+      transition: all .15s; background: none; border: none; width: 100%; text-align: left;
+    }
+    .profile-dropdown-item:hover { background: rgba(255,255,255,0.06); color: #f0efed; }
+    .profile-dropdown-item i { width: 16px; font-size: 0.9rem; color: #888; }
+    .profile-dropdown-item.logout { border-top: 1px solid rgba(255,255,255,0.06); margin-top: 4px; padding-top: 14px; }
+    .profile-dropdown-item.logout:hover { color: #ef4444; }
+    .profile-dropdown-item.logout:hover i { color: #ef4444; }
+
+    /* Profile / Payments / Settings Modal */
+    .profile-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+      z-index: 1100; align-items: center; justify-content: center; padding: 20px;
+    }
+    .profile-overlay.open { display: flex; }
+    .profile-modal {
+      background: rgba(28,28,33,0.85); backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 20px;
+      padding: 36px 32px 32px; max-width: 520px; width: 100%;
+      max-height: 80vh; overflow-y: auto; position: relative; animation: modalIn 0.25s ease;
+    }
+    .profile-modal h3 { margin: 0 0 20px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+    .profile-modal h3 i { color: #FFD700; }
+    .profile-modal .info-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.9rem; }
+    .profile-modal .info-row .label { color: #888; }
+    .profile-modal .info-row .value { color: #f0efed; font-weight: 500; }
+    .profile-modal .empty-state { text-align: center; padding: 40px 20px; color: #666; }
+    .profile-modal .empty-state i { font-size: 2.5rem; margin-bottom: 16px; color: #444; display: block; }
+    .profile-modal .payment-item { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .profile-modal .payment-item:last-child { border-bottom: none; }
+    .profile-modal .payment-item .p-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
+    .profile-modal .payment-item .p-plan { font-weight: 600; font-size: 0.9rem; }
+    .profile-modal .payment-item .p-amount { color: #22c55e; font-weight: 700; }
+    .profile-modal .payment-item .p-date { font-size: 0.8rem; color: #666; }
+    .profile-modal .payment-item .p-status { font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; display: inline-block; }
+    .profile-modal .payment-item .p-status.completed { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .profile-modal .payment-item .p-status.pending { background: rgba(255,215,0,0.15); color: #FFD700; }
+    .profile-modal .toggle-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .profile-modal .toggle-row:last-child { border-bottom: none; }
+    .profile-modal .toggle-row .toggle-label { font-size: 0.9rem; }
+    .profile-modal .toggle-row .toggle-label small { display: block; color: #666; font-size: 0.75rem; margin-top: 2px; }
+    .profile-modal .toggle-switch { width: 44px; height: 24px; background: rgba(255,255,255,0.1); border-radius: 12px; cursor: pointer; position: relative; transition: background .2s; flex-shrink: 0; }
+    .profile-modal .toggle-switch.on { background: #FFD700; }
+    .profile-modal .toggle-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: #f0efed; border-radius: 50%; transition: transform .2s; }
+    .profile-modal .toggle-switch.on::after { transform: translateX(20px); }
+
+    /* Auth Modal */
+    .auth-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .auth-overlay.open { display: flex; }
+    .auth-modal {
+      background: rgba(28, 28, 33, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 36px 32px 32px;
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+      animation: modalIn 0.25s ease;
+    }
+    .auth-modal .tabs { display: flex; gap: 0; margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .auth-modal .tab {
+      flex: 1; text-align: center; padding: 10px 0; cursor: pointer;
+      font-weight: 600; font-size: 0.95rem; color: #666;
+      transition: all .2s; border-bottom: 2px solid transparent;
+    }
+    .auth-modal .tab.active { color: #FFD700; border-bottom-color: #FFD700; }
+    .auth-modal .form-group { margin-bottom: 16px; }
+    .auth-modal .form-group label { display: block; font-size: 0.8rem; color: #999; margin-bottom: 4px; font-weight: 500; }
+    .auth-modal .form-group input {
+      width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.2); color: #f0efed; font-size: 0.95rem; outline: none;
+      transition: border-color .2s;
+    }
+    .auth-modal .form-group input:focus { border-color: #FFD700; }
+    .auth-modal .form-group input::placeholder { color: #555; }
+    .auth-modal .btn { width: 100%; justify-content: center; margin-top: 8px; }
+    .auth-modal .auth-toggle { text-align: center; margin-top: 16px; font-size: 0.85rem; color: #888; }
+    .auth-modal .auth-toggle a { color: #FFD700; cursor: pointer; text-decoration: none; }
+    .auth-modal .auth-toggle a:hover { text-decoration: underline; }
+    .auth-modal .auth-error { color: #ef4444; font-size: 0.8rem; text-align: center; margin-bottom: 12px; display: none; }
+    .auth-modal .auth-success { color: #22c55e; font-size: 0.85rem; text-align: center; margin-bottom: 12px; display: none; }
+    .auth-modal .forgot-link { text-align: right; font-size: 0.75rem; margin-top: 4px; }
+    .auth-modal .forgot-link a { color: #888; cursor: pointer; text-decoration: none; }
+    .auth-modal .forgot-link a:hover { color: #FFD700; }
+    body.has-nav { padding-top: 56px; }
+    body.auth-open { overflow: hidden; }
+
+    /* How It Works */
+    .how-it-works { background: #1c1c21; }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .step {
+      text-align: center;
+    }
+    .step-num {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      border: 3px dashed rgba(255,255,255,0.18);
+      box-shadow: 0 0 0 4px currentColor, inset 0 0 0 2px rgba(255,255,255,0.08);
+    }
+    .step:nth-child(1) .step-num { background: #e63946; }
+    .step:nth-child(2) .step-num { background: #1d3557; }
+    .step:nth-child(3) .step-num { background: #2d6a4f; }
+    .step h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #ffffff; }
+    .step p { color: #d0d0d8; font-size: 0.9rem; }
+
+    /* Payment Details */
+    .payment-details { background: #111114; }
+    .wallet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .wallet-card {
+      background: #1c1c21;
+      border: 1px solid #2a2a2e;
+      border-radius: 16px;
+      padding: 32px 28px;
+      text-align: center;
+      transition: all .2s ease;
+    }
+    .wallet-card:hover { border-color: #FFD700; }
+    .wallet-card .wallet-icon { font-size: 2rem; margin-bottom: 8px; }
+    .wallet-card h3 { font-size: 1.1rem; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
+    .wallet-card .price-label { color: #FFD700; font-weight: 600; font-size: 0.95rem; margin-bottom: 14px; }
+    .wallet-address {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      background: #0a0a0c;
+      border: 1px solid #2a2a2e;
+      border-radius: 8px;
+      padding: 10px 12px;
+      word-break: break-all;
+      color: #d0d0d8;
+      margin-bottom: 12px;
+      user-select: all;
+    }
+    .wallet-address .label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #666;
+      margin-bottom: 6px;
+    }
+    .wallet-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .wallet-actions .btn { padding: 10px 20px; font-size: 0.85rem; }
+    .wallet-qr {
+      margin: 16px auto 0;
+      width: 120px; height: 120px;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 8px;
+      display: none;
+    }
+    .wallet-qr canvas, .wallet-qr img { width: 100% !important; height: 100% !important; }
+    .wallet-qr.show { display: block; }
+    .copied-msg {
+      color: #22c55e;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: none;
+      margin-top: 8px;
+    }
+    .copied-msg.show { display: block; }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      color: #666;
+      font-size: 0.85rem;
+      border-top: 1px solid #1c1c21;
+    }
+    footer a { color: #FFD700; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: rgba(28, 28, 33, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 36px 32px;
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      animation: modalIn 0.25s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 18px;
+      background: none;
+      border: none;
+      color: #666;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color .15s;
+    }
+    .modal-close:hover { color: #f0efed; }
+    .modal h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .modal .modal-plan { color: #FFD700; font-weight: 600; margin-bottom: 20px; }
+    .modal .modal-desc { color: #d0d0d8; font-size: 0.9rem; margin-bottom: 24px; line-height: 1.6; }
+    .modal .modal-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .modal .modal-actions .btn { min-width: 140px; justify-content: center; }
+    .modal .invoice-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #FFD700;
+      background: #0a0a0c;
+      border: 1px solid #2a2a2e;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .modal .invoice-id .label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #666;
+      margin-bottom: 4px;
+    }
+    .modal .payment-amount {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #FFD700;
+      margin-bottom: 4px;
+    }
+    .modal .payment-usd {
+      color: #888;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+    }
+    .modal .modal-qr {
+      width: 140px; height: 140px;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 10px;
+      margin: 0 auto 16px;
+    }
+    .modal .modal-qr canvas, .modal .modal-qr img { width: 100% !important; height: 100% !important; }
+    .modal .wallet-address {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      background: #0a0a0c;
+      border: 1px solid #2a2a2e;
+      border-radius: 8px;
+      padding: 10px 12px;
+      word-break: break-all;
+      color: #d0d0d8;
+      margin-bottom: 16px;
+      user-select: all;
+    }
+    .modal .wallet-address .label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #666;
+      margin-bottom: 4px;
+    }
+    .modal .pending-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #FFD700;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .modal .pending-status i { animation: spin 1.2s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .modal .success-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(34,197,94,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 1.6rem;
+      color: #22c55e;
+    }
+    .modal .success-msg { color: #22c55e; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .modal .success-desc { color: #d0d0d8; font-size: 0.85rem; margin-bottom: 24px; line-height: 1.6; }
+
+    /* Scroll Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .benefit-card:nth-child(2) { transition-delay: 0.1s; }
+    .benefit-card:nth-child(3) { transition-delay: 0.2s; }
+    .benefit-card:nth-child(4) { transition-delay: 0.3s; }
+    .pricing-card:nth-child(2) { transition-delay: 0.1s; }
+    .pricing-card:nth-child(3) { transition-delay: 0.2s; }
+    .testimonials-grid .testimonial-card:nth-child(2) { transition-delay: 0.05s; }
+    .testimonials-grid .testimonial-card:nth-child(3) { transition-delay: 0.1s; }
+    .testimonials-grid .testimonial-card:nth-child(4) { transition-delay: 0.15s; }
+    .testimonials-grid .testimonial-card:nth-child(5) { transition-delay: 0.2s; }
+    .testimonials-grid .testimonial-card:nth-child(6) { transition-delay: 0.25s; }
+    .testimonials-grid .testimonial-card:nth-child(7) { transition-delay: 0.3s; }
+    .testimonials-grid .testimonial-card:nth-child(8) { transition-delay: 0.35s; }
+    .testimonials-grid .testimonial-card:nth-child(9) { transition-delay: 0.4s; }
+    .testimonials-grid .testimonial-card:nth-child(10) { transition-delay: 0.45s; }
+    .testimonials-grid .testimonial-card:nth-child(11) { transition-delay: 0.5s; }
+    .testimonials-grid .testimonial-card:nth-child(12) { transition-delay: 0.55s; }
+    .testimonials-grid .testimonial-card:nth-child(13) { transition-delay: 0.6s; }
+
+    /* Responsive */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-logo { animation: none; }
+    }
+    @media (max-width: 768px) {
+      body { font-size: 15px; }
+      .hero { min-height: 100vh; padding: 0; }
+      .hero .container { padding: 32px 20px; gap: 32px; }
+      .hero-brand { flex-direction: column; align-items: center; gap: 16px; }
+      .hero-brand-text { text-align: center; }
+      .hero-brand-text .hero-tagline { margin-left: auto; margin-right: auto; }
+      .hero-stats { justify-content: center; }
+      .hero-stats span { padding: 0 12px; font-size: 0.8rem; }
+      .hero-brand-text h1 { font-size: 2.2rem; }
+      .hero-logo { width: 80px; height: 80px; }
+      .btn { justify-content: center; }
+      .btn-lg { padding: 16px 32px; }
+      section { padding: 48px 0; }
+      .pricing-card { padding: 32px 24px; }
+      .pricing-card .price { font-size: 2.2rem; }
+      .pricing-card .features li { padding: 6px 0; }
+      section > .container > p { margin-bottom: 28px; }
+      section h2 { font-size: 1.7rem; margin-bottom: 14px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .pricing-card.popular { transform: none; }
+      .pricing-card.popular:hover { transform: translateY(-6px); }
+      .wallet-grid { grid-template-columns: 1fr; }
+      .crypto-grid { grid-template-columns: repeat(3, 1fr); max-width: 320px; gap: 10px; }
+      .testimonials-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+      .testimonial-card { height: 240px; }
+      .testimonial-card .testimonial-caption { padding: 10px 12px 14px; }
+      .testimonial-card .testimonial-caption .win { font-size: 1rem; }
+      .testimonial-card .testimonial-caption .risk { font-size: 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <a href="#" class="nav-brand" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">
+    <img src="logo.webp" alt="Claims Casino"> Claims Casino
+  </a>
+  <div class="nav-profile-wrapper">
+    <button class="nav-profile" id="profileBtn" onclick="toggleProfileMenu()" aria-label="Account">
+      <i class="fas fa-user-circle"></i>
+    </button>
+    <div class="profile-dropdown" id="profileDropdown">
+      <button class="profile-dropdown-item" onclick="profileAction('profile')"><i class="fas fa-user"></i> Profile</button>
+      <button class="profile-dropdown-item" onclick="profileAction('payments')"><i class="fas fa-credit-card"></i> Payments</button>
+      <button class="profile-dropdown-item" onclick="profileAction('settings')"><i class="fas fa-cog"></i> Settings</button>
+      <button class="profile-dropdown-item logout" onclick="profileAction('logout')"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-brand">
+        <img src="logo.webp" alt="Claims Casino" class="hero-logo">
+        <div class="hero-brand-text">
+          <span class="hero-tagline">&#10022; Trusted by 500+ Members</span>
+          <h1>Claims Casino Automation</h1>
+          <p class="hero-subtitle">Turn free casino bonuses into real profit — without lifting a finger.</p>
+          <p class="hero-blurb">Get instant Discord alerts on profitable casino bonus drops, auto-claim daily free SC from 80+ casinos, and snipe streamer link drops — all designed to turn free Sweepstakes Cash into real earnings.</p>
+          <div class="hero-stats">
+            <span><i class="fas fa-user"></i> 500+ Members</span>
+            <span><i class="fas fa-check"></i> 80+ Casinos</span>
+            <span><i class="fas fa-check"></i> 24/7 Monitoring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn btn-primary btn-lg" onclick="event.preventDefault();document.getElementById('pricing').scrollIntoView({behavior:'smooth',block:'start'})"><i class="fas fa-crown"></i> Get Access</a>
+      <a href="https://discord.gg/PXxb9fDWrp" class="btn btn-secondary btn-lg"><i class="fab fa-discord"></i> Join our Free Community</a>
+    </div>
+    <div class="hero-arrow">
+      <i class="fas fa-chevron-down"></i>
+      <span>How We Make You Money</span>
+    </div>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section class="benefits">
+  <div class="container">
+    <h2>How You Profit</h2>
+    <p>Turn free casino bonuses into real money with 24/7 automated monitoring.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-in">
+        <h3>🔔 Real-Time Profit Alerts</h3>
+        <p>Get paid the moment free SC, spins, and bonuses drop — claim before they expire and stack real cash faster.</p>
+      </div>
+      <div class="benefit-card fade-in">
+        <h3>🤖 Auto Daily Earnings</h3>
+        <p>Set it and forget it. We auto-collect free Sweepscash daily from 80+ casinos, compounding your earnings on autopilot.</p>
+      </div>
+      <div class="benefit-card fade-in">
+        <h3>🎯 Streamer Sniping &amp; More</h3>
+        <p>Live monitor Kick.com chats for link drops and exclusive promos — claim high-value bonuses other players miss.</p>
+      </div>
+      <div class="benefit-card fade-in">
+        <h3>💬 Private Profit Community</h3>
+        <p>Access a private network of profit-focused grinders sharing winning strategies, exclusive tips, and real earnings results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <h2>Choose Your Plan</h2>
+    <p>Start earning with 24/7 casino monitoring. BTC · ETH · USDC · USDT · SOL · BNB accepted. All payments are final and non-refundable.</p>
+    <div class="pricing-grid">
+      <!-- Monthly -->
+      <div class="pricing-card fade-in">
+        <h3>Monthly</h3>
+        <div class="price">$299.99</div>
+        <div class="price-sub">BTC per month</div>
+        <ul class="features">
+          <li><i class="fas fa-check"></i> Real-time Discord alerts</li>
+          <li><i class="fas fa-check"></i> Auto daily claims</li>
+          <li><i class="fas fa-check"></i> Streamer link sniping</li>
+          <li><i class="fas fa-check"></i> 80+ casinos supported</li>
+          <li><i class="fas fa-check"></i> Monthly renewal</li>
+        </ul>
+        <a href="#payment" class="btn btn-primary buy-btn" onclick="event.preventDefault();this.classList.add('adding');openConfirmModal('Monthly', '299.99')"><i class="fas fa-cart-shopping"></i> Buy Now</a>
+      </div>
+
+      <!-- Lifetime -->
+      <div class="pricing-card popular fade-in">
+        <span class="pricing-badge">Best Value</span>
+        <h3>Lifetime</h3>
+        <div class="price">$4999.99</div>
+        <div class="price-sub">BTC · one-time</div>
+        <ul class="features">
+          <li><i class="fas fa-check"></i> Everything in Monthly</li>
+          <li><i class="fas fa-check"></i> Lifetime access</li>
+          <li><i class="fas fa-check"></i> Access to other paid communities</li>
+          <li><i class="fas fa-check"></i> Priority Discord support</li>
+          <li><i class="fas fa-check"></i> All future updates</li>
+        </ul>
+        <a href="#payment" class="btn btn-primary buy-btn" onclick="event.preventDefault();this.classList.add('adding');openConfirmModal('Lifetime', '4999.99')"><i class="fas fa-cart-shopping"></i> Buy Now</a>
+      </div>
+
+      <!-- Elite -->
+      <div class="pricing-card fade-in">
+        <h3>Elite</h3>
+        <div class="price">$349.99</div>
+        <div class="price-sub">BTC per month</div>
+        <ul class="features">
+          <li><i class="fas fa-check"></i> Everything in Lifetime</li>
+          <li><i class="fas fa-check"></i> Access to other paid communities</li>
+          <li><i class="fas fa-check"></i> VIP Discord role</li>
+          <li><i class="fas fa-check"></i> Direct line to support</li>
+          <li><i class="fas fa-check"></i> Early access to new features</li>
+        </ul>
+        <a href="#payment" class="btn btn-primary buy-btn" onclick="event.preventDefault();this.classList.add('adding');openConfirmModal('Elite', '349.99')"><i class="fas fa-cart-shopping"></i> Buy Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Accepted Cryptocurrencies -->
+<section class="crypto-accepted">
+  <div class="container">
+    <h2>Accepted Cryptocurrencies</h2>
+    <p>BTC · ETH · USDC · USDT · SOL · BNB</p>
+    <div class="crypto-grid">
+      <div class="crypto-item fade-in">
+        <div class="crypto-icon" style="color:#f7931a;"><i class="fab fa-bitcoin"></i></div>
+        <div class="name">Bitcoin</div>
+      </div>
+      <div class="crypto-item fade-in">
+        <div class="crypto-icon" style="color:#627eea;"><i class="fab fa-ethereum"></i></div>
+        <div class="name">Ethereum</div>
+      </div>
+      <div class="crypto-item fade-in">
+        <div class="crypto-icon"><span class="crypto-dot" style="background:#2775ca;"></span><span class="crypto-ticker" style="color:#2775ca;">USDC</span></div>
+        <div class="name">USD Coin</div>
+      </div>
+      <div class="crypto-item fade-in">
+        <div class="crypto-icon"><span class="crypto-dot" style="background:#26a17b;"></span><span class="crypto-ticker" style="color:#26a17b;">USDT</span></div>
+        <div class="name">Tether</div>
+      </div>
+      <div class="crypto-item fade-in">
+        <div class="crypto-icon"><span class="crypto-dot" style="background:#9945ff;"></span><span class="crypto-ticker" style="color:#9945ff;">SOL</span></div>
+        <div class="name">Solana</div>
+      </div>
+      <div class="crypto-item fade-in">
+        <div class="crypto-icon"><span class="crypto-dot" style="background:#f3ba2f;"></span><span class="crypto-ticker" style="color:#f3ba2f;">BNB</span></div>
+        <div class="name">BNB</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="container">
+    <h2>Real Wins, Real Results</h2>
+    <p>Our members turn free bonuses into real cash every day. Here are just a few of their wins.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t1.png" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$51.06</div>
+          <div class="risk">Sportzino balance hit $51</div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t2.png" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$50.00</div>
+          <div class="risk">Referred friend, earned $50 bonus</div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t3.png" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$31.50</div>
+          <div class="risk">Turned $4 into $31.50 profit</div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t4.png" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$24.70</div>
+          <div class="risk">Redeemed $24.70 in winnings</div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t5.png" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$87.35</div>
+          <div class="risk">Cashed out $87.35 same day</div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t6.png" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$45.00</div>
+          <div class="risk">Dogg Cash redemption success</div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t7.jpg" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$112.42</div>
+          <div class="risk">Big win on Sportzino slots</div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t8.jpg" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$63.88</div>
+          <div class="risk">KYC verified, withdrawal sent</div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t9.jpg" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$28.50</div>
+          <div class="risk">Won big on sweepjungle.com</div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t10.jpg" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$53.87</div>
+          <div class="risk">Lonestar SC balance $53.87</div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t11.jpg" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$21.31</div>
+          <div class="risk">Rebet win +$21.31</div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t12.jpg" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$7.17</div>
+          <div class="risk">Rebet Cash pick won $7.17</div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <img src="testimonials/t13.jpg" alt="Win screenshot" loading="lazy">
+        <div class="testimonial-caption">
+          <div class="win">+$22.77</div>
+          <div class="risk">Redeemed $22.77 to card</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="how-it-works">
+  <div class="container">
+    <h2>How It Works</h2>
+    <p>Three simple steps to get started.</p>
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-num">1</div>
+        <h3>Choose a Plan</h3>
+        <p>Select the membership tier that fits your needs above.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">2</div>
+        <h3>Send Crypto</h3>
+        <p>Copy the BTC wallet address below and send the exact amount.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">3</div>
+        <h3>Get Access</h3>
+        <p>Join our Discord and open a ticket with your transaction ID to verify and gain access.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Auth Modal -->
+<div class="auth-overlay" id="authOverlay" onclick="if(event.target===this)closeAuthModal()">
+  <div class="auth-modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" id="loginTab" onclick="switchAuthTab('login')">Log In</div>
+      <div class="tab" id="signupTab" onclick="switchAuthTab('signup')">Sign Up</div>
+    </div>
+
+    <div class="auth-error" id="authError"></div>
+    <div class="auth-success" id="authSuccess"></div>
+
+    <!-- Login Form -->
+    <div id="loginForm">
+      <div class="form-group">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter password">
+      </div>
+      <div class="forgot-link"><a onclick="alert('Contact support@claimscasino.com to reset your password.')">Forgot password?</a></div>
+      <button class="btn btn-primary" onclick="handleLogin()"><i class="fas fa-sign-in-alt"></i> Log In</button>
+      <div class="auth-toggle">Don't have an account? <a onclick="switchAuthTab('signup')">Sign Up</a></div>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signupForm" style="display:none">
+      <div class="form-group">
+        <label for="signupEmail">Email</label>
+        <input type="email" id="signupEmail" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label for="signupPassword">Password</label>
+        <input type="password" id="signupPassword" placeholder="Create a password">
+      </div>
+      <div class="form-group">
+        <label for="signupConfirm">Confirm Password</label>
+        <input type="password" id="signupConfirm" placeholder="Confirm password">
+      </div>
+      <button class="btn btn-primary" onclick="handleSignup()"><i class="fas fa-user-plus"></i> Sign Up</button>
+      <div class="auth-toggle">Already have an account? <a onclick="switchAuthTab('login')">Log In</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="profile-overlay" id="profileOverlay" onclick="if(event.target===this)closeProfileOverlay()">
+  <div class="profile-modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeProfileOverlay()">&times;</button>
+    <div id="profileModalContent"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+
+    <!-- Confirm View -->
+    <div id="confirmView">
+      <h3 id="confirmPlan">Confirm Purchase</h3>
+      <p class="modal-plan" id="confirmPlanName"></p>
+      <p class="modal-desc">You are about to purchase this membership plan. Do you wish to proceed?</p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="confirmPayment()">Yes, Proceed</button>
+      </div>
+    </div>
+
+    <!-- Payment View -->
+    <div id="paymentView" style="display:none">
+      <h3>Complete Payment</h3>
+      <p class="modal-plan" id="paymentPlanName"></p>
+      <div class="invoice-id">
+        <span class="label">Invoice ID</span>
+        <span id="invoiceId"></span>
+      </div>
+      <div class="payment-amount" id="btcAmount"></div>
+      <div class="payment-usd" id="usdAmount"></div>
+      <div class="modal-qr" id="paymentQr"></div>
+      <div class="wallet-address">
+        <span class="label">BTC Address</span>
+        bc1qndy36lk0pvkggnp2jgrkgkqzsp6lne60azwc9j
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="copyModalAddress()"><i class="fas fa-copy"></i> Copy Address</button>
+        <button class="btn btn-primary" id="sentBtn" onclick="startPolling()"><i class="fas fa-check"></i> I've Sent BTC</button>
+      </div>
+      <div id="pendingStatus" class="pending-status" style="display:none">
+        <i class="fas fa-spinner"></i> Waiting for 1 blockchain confirmation...
+      </div>
+      <div class="copied-msg" id="modalCopied" style="margin-top:12px">Copied!</div>
+    </div>
+
+    <!-- Success View -->
+    <div id="successView" style="display:none">
+      <div class="success-icon"><i class="fas fa-check"></i></div>
+      <div class="success-msg">Payment Confirmed!</div>
+      <p class="success-desc">Your transaction has received 1 blockchain confirmation. Please join our Discord and open a ticket with your Invoice ID to activate your membership.</p>
+      <div class="invoice-id">
+        <span class="label">Invoice ID</span>
+        <span id="successInvoice"></span>
+      </div>
+      <div class="modal-actions">
+        <a href="https://discord.gg/PXxb9fDWrp" class="btn btn-primary" target="_blank"><i class="fab fa-discord"></i> Join Discord</a>
+        <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>
+      <a href="mailto:support@claimscasino.com">support@claimscasino.com</a> ·
+      © 2026 Claims Casino Automation
+    </p>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+function copyAddress(btn, id) {
+  const card = btn.closest('.wallet-card');
+  const addrEl = card.querySelector('.wallet-address');
+  const addr = addrEl.textContent.replace('BTC Address', '').trim();
+  navigator.clipboard.writeText(addr).then(() => {
+    const msg = document.getElementById('copied-' + id);
+    msg.classList.add('show');
+    setTimeout(() => msg.classList.remove('show'), 2000);
+  });
+}
+
+function toggleQr(id) {
+  const qrEl = document.getElementById('qr-' + id);
+  if (qrEl.classList.contains('show')) {
+    qrEl.classList.remove('show');
+    return;
+  }
+  const card = qrEl.closest('.wallet-card');
+  const addrEl = card.querySelector('.wallet-address');
+  const addr = addrEl.textContent.replace('BTC Address', '').trim();
+  qrEl.innerHTML = '';
+  new QRCode(qrEl, { text: addr, width: 120, height: 120, colorDark: '#000000', colorLight: '#ffffff' });
+  qrEl.classList.add('show');
+}
+
+const BTC_ADDRESS = 'bc1qndy36lk0pvkggnp2jgrkgkqzsp6lne60azwc9j';
+let currentPlan = '';
+let currentPrice = 0;
+let pollingInterval = null;
+
+function openConfirmModal(plan, price) {
+  currentPlan = plan;
+  currentPrice = price;
+  document.getElementById('confirmPlanName').textContent = plan + ' — $' + price;
+  document.getElementById('confirmView').style.display = '';
+  document.getElementById('paymentView').style.display = 'none';
+  document.getElementById('successView').style.display = 'none';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function confirmPayment() {
+  document.getElementById('confirmView').style.display = 'none';
+  document.getElementById('paymentView').style.display = '';
+  document.getElementById('paymentPlanName').textContent = currentPlan;
+
+  const invoiceId = 'INV-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2,6).toUpperCase();
+  document.getElementById('invoiceId').textContent = invoiceId;
+
+  document.getElementById('paymentQr').innerHTML = '';
+  new QRCode(document.getElementById('paymentQr'), { text: BTC_ADDRESS, width: 140, height: 140, colorDark: '#000000', colorLight: '#ffffff' });
+
+  fetchBtcPrice();
+}
+
+function fetchBtcPrice() {
+  document.getElementById('btcAmount').textContent = 'Fetching BTC price...';
+  fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
+    .then(r => r.json())
+    .then(data => {
+      const usdPrice = parseFloat(currentPrice.replace(/,/g,''));
+      const btcRate = data.bitcoin.usd;
+      const btcAmount = usdPrice / btcRate;
+      document.getElementById('btcAmount').textContent = btcAmount.toFixed(8) + ' BTC';
+      document.getElementById('usdAmount').textContent = '≈ $' + usdPrice.toFixed(2) + ' USD';
+    })
+    .catch(() => {
+      document.getElementById('btcAmount').textContent = '~' + (parseFloat(currentPrice.replace(/,/g,'')) / 67000).toFixed(8) + ' BTC';
+      document.getElementById('usdAmount').textContent = '≈ $' + currentPrice + ' USD';
+    });
+}
+
+function copyModalAddress() {
+  navigator.clipboard.writeText(BTC_ADDRESS).then(() => {
+    const msg = document.getElementById('modalCopied');
+    msg.classList.add('show');
+    setTimeout(() => msg.classList.remove('show'), 2000);
+  });
+}
+
+function startPolling() {
+  document.getElementById('sentBtn').disabled = true;
+  document.getElementById('sentBtn').style.opacity = '0.5';
+  document.getElementById('pendingStatus').style.display = 'flex';
+  document.getElementById('sentBtn').textContent = 'Waiting...';
+  checkMempool();
+  pollingInterval = setInterval(checkMempool, 15000);
+}
+
+function checkMempool() {
+  const since = Math.floor(Date.now() / 1000) - 7200;
+  fetch('https://mempool.space/api/address/' + BTC_ADDRESS + '/txs')
+    .then(r => r.json())
+    .then(txs => {
+      const confirmed = txs.filter(tx => tx.status.confirmed);
+      if (confirmed.length > 0) {
+        clearInterval(pollingInterval);
+        onPaymentConfirmed();
+      }
+    })
+    .catch(() => {});
+}
+
+function onPaymentConfirmed() {
+  document.getElementById('paymentView').style.display = 'none';
+  document.getElementById('successView').style.display = '';
+  const inv = document.getElementById('invoiceId').textContent;
+  document.getElementById('successInvoice').textContent = inv;
+  const history = JSON.parse(localStorage.getItem('claims_casino_payments') || '[]');
+  history.push({ invoice: inv, plan: currentPlan, amount: currentPrice.replace(/[^0-9.]/g,''), date: new Date().toLocaleDateString(), status: 'completed' });
+  localStorage.setItem('claims_casino_payments', JSON.stringify(history));
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  if (pollingInterval) clearInterval(pollingInterval);
+  document.getElementById('pendingStatus').style.display = 'none';
+  document.getElementById('sentBtn').disabled = false;
+  document.getElementById('sentBtn').style.opacity = '1';
+  document.getElementById('sentBtn').textContent = "I've Sent BTC";
+}
+
+/* Auth */
+let authUser = null;
+const saved = localStorage.getItem('claims_casino_auth');
+if (saved) { authUser = JSON.parse(saved); updateAuthUI(); }
+document.body.classList.add('has-nav');
+// Migrate old user data format
+try {
+  const users = JSON.parse(localStorage.getItem('claims_casino_users') || '{}');
+  let changed = false;
+  for (const k in users) {
+    if (typeof users[k] === 'string') {
+      users[k] = { password: users[k], since: 'Today' };
+      changed = true;
+    }
+  }
+  if (changed) localStorage.setItem('claims_casino_users', JSON.stringify(users));
+} catch(e){}
+
+function updateAuthUI() {
+  const btn = document.getElementById('profileBtn');
+  if (authUser) {
+    btn.innerHTML = '<i class="fas fa-user-check" style="color:#FFD700"></i>';
+    btn.title = 'Logged in as ' + authUser.email;
+  } else {
+    btn.innerHTML = '<i class="fas fa-user-circle"></i>';
+    btn.title = 'Log In / Sign Up';
+    closeProfileMenu();
+  }
+}
+
+function toggleProfileMenu() {
+  if (!authUser) { openAuthModal(); return; }
+  document.getElementById('profileDropdown').classList.toggle('open');
+}
+
+function openAuthModal() {
+  closeProfileMenu();
+  document.getElementById('authOverlay').classList.add('open');
+  document.body.classList.add('auth-open');
+  document.getElementById('authError').style.display = 'none';
+  document.getElementById('authSuccess').style.display = 'none';
+}
+
+function closeProfileMenu() {
+  document.getElementById('profileDropdown').classList.remove('open');
+}
+
+function profileAction(action) {
+  if (action === 'logout') {
+    authUser = null;
+    localStorage.removeItem('claims_casino_auth');
+    updateAuthUI();
+    closeProfileMenu();
+    return;
+  }
+  closeProfileMenu();
+  const content = document.getElementById('profileModalContent');
+  if (action === 'profile') renderProfileView(content);
+  else if (action === 'payments') renderPaymentsView(content);
+  else if (action === 'settings') renderSettingsView(content);
+  document.getElementById('profileOverlay').classList.add('open');
+  document.body.classList.add('auth-open');
+}
+
+function closeProfileOverlay() {
+  document.getElementById('profileOverlay').classList.remove('open');
+  document.body.classList.remove('auth-open');
+}
+
+function renderProfileView(el) {
+  const history = JSON.parse(localStorage.getItem('claims_casino_payments') || '[]');
+  const totalPaid = history.reduce((sum, p) => sum + parseFloat(p.amount), 0);
+  el.innerHTML = '<h3><i class="fas fa-user-circle"></i> My Profile</h3>' +
+    '<div class="info-row"><span class="label">Email</span><span class="value">' + escapeHtml(authUser.email) + '</span></div>' +
+    '<div class="info-row"><span class="label">Member Since</span><span class="value">' + (authUser.since || 'Today') + '</span></div>' +
+    '<div class="info-row"><span class="label">Total Payments</span><span class="value">' + history.length + '</span></div>' +
+    '<div class="info-row"><span class="label">Total Spent</span><span class="value" style="color:#22c55e;">$' + totalPaid.toFixed(2) + '</span></div>' +
+    '<div style="margin-top:20px;text-align:center;font-size:0.8rem;color:#666;">' +
+    '<button class="btn btn-secondary" onclick="closeProfileOverlay()" style="padding:10px 28px;">Close</button></div>';
+}
+
+function renderPaymentsView(el) {
+  const history = JSON.parse(localStorage.getItem('claims_casino_payments') || '[]');
+  let html = '<h3><i class="fas fa-receipt"></i> Payment History</h3>';
+  if (history.length === 0) {
+    html += '<div class="empty-state"><i class="fas fa-credit-card"></i><br>No payments yet.<br><span style="font-size:0.85rem;color:#888;">Complete a purchase to see it here.</span></div>';
+  } else {
+    for (const p of history) {
+      html += '<div class="payment-item">' +
+        '<div class="p-header"><span class="p-plan">' + escapeHtml(p.plan) + '</span><span class="p-amount">$' + parseFloat(p.amount).toFixed(2) + '</span></div>' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;">' +
+        '<span class="p-date">' + p.date + '</span>' +
+        '<span class="p-status ' + (p.status === 'completed' ? 'completed' : 'pending') + '">' + p.status + '</span></div>' +
+        '<div style="font-size:0.75rem;color:#555;margin-top:2px;">Invoice: ' + escapeHtml(p.invoice) + '</div>' +
+        '</div>';
+    }
+  }
+  html += '<div style="margin-top:20px;text-align:center;font-size:0.8rem;color:#666;">' +
+    '<button class="btn btn-secondary" onclick="closeProfileOverlay()" style="padding:10px 28px;">Close</button></div>';
+  el.innerHTML = html;
+}
+
+function renderSettingsView(el) {
+  const notifs = localStorage.getItem('claims_notifications') !== 'off';
+  el.innerHTML = '<h3><i class="fas fa-cog"></i> Settings</h3>' +
+    '<div class="toggle-row">' +
+    '<div class="toggle-label">Email Notifications<small>Receive updates about promos and wins</small></div>' +
+    '<div class="toggle-switch' + (notifs ? ' on' : '') + '" id="notifToggle" onclick="toggleNotif()"></div>' +
+    '</div>' +
+    '<div class="toggle-row">' +
+    '<div class="toggle-label">Dark Theme<small>Always enabled on this site</small></div>' +
+    '<div class="toggle-switch on" style="opacity:0.5;cursor:default;"></div>' +
+    '</div>' +
+    '<div style="margin-top:24px;text-align:center;">' +
+    '<button class="btn btn-secondary" onclick="closeProfileOverlay()" style="padding:10px 28px;">Close</button></div>';
+}
+
+function toggleNotif() {
+  const el = document.getElementById('notifToggle');
+  const on = el.classList.toggle('on');
+  localStorage.setItem('claims_notifications', on ? 'on' : 'off');
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+document.addEventListener('click', function(e) {
+  const dd = document.getElementById('profileDropdown');
+  const wrapper = document.querySelector('.nav-profile-wrapper');
+  if (dd.classList.contains('open') && wrapper && !wrapper.contains(e.target)) {
+    closeProfileMenu();
+  }
+});
+
+function closeAuthModal() {
+  document.getElementById('authOverlay').classList.remove('open');
+  document.body.classList.remove('auth-open');
+}
+
+function switchAuthTab(tab) {
+  document.getElementById('authError').style.display = 'none';
+  document.getElementById('authSuccess').style.display = 'none';
+  if (tab === 'login') {
+    document.getElementById('loginTab').classList.add('active');
+    document.getElementById('signupTab').classList.remove('active');
+    document.getElementById('loginForm').style.display = '';
+    document.getElementById('signupForm').style.display = 'none';
+  } else {
+    document.getElementById('signupTab').classList.add('active');
+    document.getElementById('loginTab').classList.remove('active');
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('signupForm').style.display = '';
+  }
+}
+
+function showAuthError(msg) {
+  const el = document.getElementById('authError');
+  el.textContent = msg; el.style.display = 'block';
+  document.getElementById('authSuccess').style.display = 'none';
+}
+
+function showAuthSuccess(msg) {
+  const el = document.getElementById('authSuccess');
+  el.textContent = msg; el.style.display = 'block';
+  document.getElementById('authError').style.display = 'none';
+}
+
+function handleLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value.trim();
+  if (!email || !password) { showAuthError('Please fill in all fields.'); return; }
+  const data = JSON.parse(localStorage.getItem('claims_casino_users') || '{}');
+  if (!data[email]) { showAuthError('No account found with this email.'); return; }
+  if (typeof data[email] === 'string' ? data[email] !== password : data[email].password !== password) { showAuthError('Incorrect password.'); return; }
+  authUser = { email, since: typeof data[email] === 'string' ? 'Today' : (data[email].since || 'Today') };
+  localStorage.setItem('claims_casino_auth', JSON.stringify(authUser));
+  updateAuthUI();
+  closeAuthModal();
+  showAuthSuccess('');
+}
+
+function handleSignup() {
+  const email = document.getElementById('signupEmail').value.trim();
+  const password = document.getElementById('signupPassword').value.trim();
+  const confirm = document.getElementById('signupConfirm').value.trim();
+  if (!email || !password || !confirm) { showAuthError('Please fill in all fields.'); return; }
+  if (!email.includes('@')) { showAuthError('Please enter a valid email address.'); return; }
+  if (password.length < 6) { showAuthError('Password must be at least 6 characters.'); return; }
+  if (password !== confirm) { showAuthError('Passwords do not match.'); return; }
+  const data = JSON.parse(localStorage.getItem('claims_casino_users') || '{}');
+  if (data[email]) { showAuthError('An account with this email already exists.'); return; }
+  data[email] = { password: password, since: new Date().toLocaleDateString() };
+  localStorage.setItem('claims_casino_users', JSON.stringify(data));
+  authUser = { email, since: data[email].since };
+  localStorage.setItem('claims_casino_auth', JSON.stringify(authUser));
+  updateAuthUI();
+  closeAuthModal();
+  showAuthSuccess('Account created successfully!');
+}
+</script>
+</body>
+</html>

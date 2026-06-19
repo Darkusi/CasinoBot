@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Chumba Casino",
+    "enabled": false,
+    "claimUrl": "https://www.chumbacasino.com/promotions/daily-bonus",
+    "method": "GET",
+    "schedule": "0 10 * * *",
+    "cookieFile": "",
+    "successIndicator": "claim"
+  },
+  {
+    "name": "LuckyLand Slots",
+    "enabled": false,
+    "claimUrl": "https://www.luckylandslots.com/daily-bonus",
+    "method": "GET",
+    "schedule": "0 10 * * *",
+    "cookieFile": "",
+    "successIndicator": "bonus"
+  },
+  {
+    "name": "Pulsz",
+    "enabled": false,
+    "claimUrl": "https://www.pulsz.com/daily-bonus",
+    "method": "GET",
+    "schedule": "0 10 * * *",
+    "cookieFile": "",
+    "successIndicator": "claim"
+  },
+  {
+    "name": "Stake.us",
+    "enabled": false,
+    "claimUrl": "https://stake.us/casino/promotions/daily",
+    "method": "GET",
+    "schedule": "0 10 * * *",
+    "cookieFile": "",
+    "successIndicator": "daily"
+  },
+  {
+    "name": "Funrize",
+    "enabled": false,
+    "claimUrl": "https://www.funrize.com/promotions/daily",
+    "method": "GET",
+    "schedule": "0 10 * * *",
+    "cookieFile": "",
+    "successIndicator": "claim"
+  },
+  {
+    "name": "Global Poker",
+    "enabled": false,
+    "claimUrl": "https://www.globalpoker.com/daily-bonus",
+    "method": "GET",
+    "schedule": "0 10 * * *",
+    "cookieFile": "",
+    "successIndicator": "bonus"
+  },
+  {
+    "name": "Modo.us",
+    "enabled": false,
+    "claimUrl": "https://modo.us/daily",
+    "method": "GET",
+    "schedule": "0 10 * * *",
+    "cookieFile": "",
+    "successIndicator": "claim"
+  },
+  {
+    "name": "Sportzino",
+    "enabled": false,
+    "claimUrl": "https://sportzino.com/daily-bonus",
+    "method": "GET",
+    "schedule": "0 10 * * *",
+    "cookieFile": "",
+    "successIndicator": "claim"
+  }
+]

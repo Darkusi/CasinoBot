@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Example Streamer",
+    "enabled": false,
+    "kickUsername": "example",
+    "monitorLinks": true,
+    "webhookUrl": ""
+  }
+]

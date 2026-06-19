@@ -1,0 +1,5 @@
+node_modules/
+.env
+data/seen_posts.json
+data/claim_history.json
+data/settings.json

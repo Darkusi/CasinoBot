@@ -1,0 +1,37 @@
+name: Build CasinoBot.exe + Installer
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build exe
+        run: python -m PyInstaller CasinoBot.spec
+      - name: Install Inno Setup
+        shell: pwsh
+        run: |
+          curl.exe -sL "https://jrsoftware.org/download.php/is.exe" -o "$env:TEMP\innosetup.exe"
+          Start-Process -Wait -FilePath "$env:TEMP\innosetup.exe" -ArgumentList "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /DIR=C:\InnoSetup" -NoNewWindow
+          echo "C:\InnoSetup" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - name: Build installer
+        shell: pwsh
+        run: |
+          $version = "$env:GITHUB_REF_NAME".TrimStart('v')
+          New-Item -ItemType Directory -Path build -Force | Out-Null
+          Copy-Item dist/CasinoBot.exe build/CasinoBot.exe -Force
+          ISCC.exe scripts/setup.iss /Q
+      - name: Upload Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/CasinoBot.exe
+            build/CasinoBot-Setup-*.exe

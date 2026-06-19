@@ -1,0 +1,146 @@
+{
+  "DEFAULT": {
+    "xpaths": {
+      "cookie_accept": "//button[contains(text(),'Accept') or contains(text(),'Agree') or contains(text(),'Allow')]",
+      "login_button": "//a[contains(text(),'Login') or contains(text(),'Log In')] | //button[contains(text(),'Login') or contains(text(),'Sign In')]",
+      "email_field": "//input[@type='email' or @name='email' or @placeholder='Email' or @placeholder='Username']",
+      "password_field": "//input[@type='password']",
+      "submit_button": "//button[@type='submit'] | //button[contains(text(),'Login') or contains(text(),'Sign In')]",
+      "wallet_url": "/wallet",
+      "daily_claim_button": "//button[contains(text(),'Daily') or contains(text(),'Claim') or contains(text(),'Bonus') or contains(text(),'Collect')]",
+      "success_indicator": "//div[contains(@class,'balance') or contains(@class,'user')]"
+    },
+    "wait_times": {
+      "page_load": 3,
+      "login": 4,
+      "claim": 3
+    }
+  },
+  "chumbacasino.com": {
+    "xpaths": {
+      "wallet_url": "/promotions/daily-bonus",
+      "daily_claim_button": "//button[contains(@class,'claim-btn') or contains(text(),'Claim')]"
+    },
+    "wait_times": {
+      "page_load": 4,
+      "login": 5,
+      "claim": 4
+    }
+  },
+  "pulsz.com": {
+    "xpaths": {
+      "wallet_url": "/daily-bonus",
+      "daily_claim_button": "//button[contains(@class,'daily-bonus') or contains(text(),'Collect')]"
+    },
+    "wait_times": {
+      "page_load": 4,
+      "login": 5,
+      "claim": 3
+    }
+  },
+  "stake.us": {
+    "xpaths": {
+      "login_button": "//a[contains(text(),'Login')] | //button[contains(text(),'Log in')]",
+      "wallet_url": "/casino/promotions",
+      "daily_claim_button": "//button[contains(text(),'Claim') or contains(text(),'Daily')]"
+    },
+    "wait_times": {
+      "page_load": 3,
+      "login": 4,
+      "claim": 3
+    }
+  },
+  "sportzino.com": {
+    "xpaths": {
+      "wallet_url": "/daily-bonus",
+      "daily_claim_button": "//button[contains(text(),'Collect') or contains(@class,'bonus')]"
+    },
+    "wait_times": {
+      "page_load": 4,
+      "login": 5,
+      "claim": 3
+    }
+  },
+  "mcluck.com": {
+    "xpaths": {
+      "wallet_url": "/promotions",
+      "daily_claim_button": "//button[contains(text(),'Claim') or contains(text(),'Daily')]"
+    },
+    "wait_times": {
+      "page_load": 4,
+      "login": 5,
+      "claim": 3
+    }
+  },
+  "wowvegas.com": {
+    "xpaths": {
+      "wallet_url": "/daily-bonus",
+      "daily_claim_button": "//button[contains(text(),'Collect') or contains(text(),'Claim')]"
+    },
+    "wait_times": {
+      "page_load": 4,
+      "login": 5,
+      "claim": 3
+    }
+  },
+  "luckylandslots.com": {
+    "xpaths": {
+      "wallet_url": "/daily-bonus",
+      "daily_claim_button": "//button[contains(text(),'Claim') or contains(text(),'Collect')]"
+    },
+    "wait_times": {
+      "page_load": 4,
+      "login": 5,
+      "claim": 3
+    }
+  },
+  "high5casino.com": {
+    "xpaths": {
+      "wallet_url": "/daily-bonus",
+      "daily_claim_button": "//button[contains(text(),'Claim') or contains(text(),'Spin')]"
+    },
+    "wait_times": {
+      "page_load": 4,
+      "login": 5,
+      "claim": 3
+    }
+  },
+  "funrize.com": {
+    "xpaths": {
+      "wallet_url": "/bonus",
+      "daily_claim_button": "//button[contains(text(),'Claim') or contains(text(),'Collect')]"
+    },
+    "wait_times": {
+      "page_load": 4,
+      "login": 5,
+      "claim": 3
+    }
+  },
+  "crowncoinscasino.com": {
+    "xpaths": {
+      "wallet_url": "/daily",
+      "daily_claim_button": "//button[contains(text(),'Claim') or contains(text(),'Collect')]"
+    },
+    "wait_times": {
+      "page_load": 4,
+      "login": 5,
+      "claim": 3
+    }
+  },
+  "betonline.ag": {
+    "xpaths": {
+      "email_field": "//input[@id='username']",
+      "password_field": "//input[@id='password']",
+      "submit_button": "//button[@id='kc-login']",
+      "otp_field": "//input[contains(@class,'otp-input')]",
+      "otp_verify_button": "//button[contains(@class,'verify') or contains(text(),'Verify Code')]",
+      "wallet_url": "/vip-rewards",
+      "daily_claim_button": "//button[contains(text(),'CLAIM NOW') or contains(text(),'Claim Now')]"
+    },
+    "wait_times": {
+      "page_load": 5,
+      "login": 3,
+      "claim": 4
+    }
+  }
+}

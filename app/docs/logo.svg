@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="chip-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FFB300"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#chip-grad)" stroke="#1c1c21" stroke-width="2"/>
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#1c1c21" stroke-width="1.5"/>
+  <circle cx="32" cy="32" r="12" fill="#1c1c21"/>
+  <text x="32" y="37" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#FFD700">CBM</text>
+  <line x1="32" y1="2" x2="32" y2="8" stroke="#1c1c21" stroke-width="1.5"/>
+  <line x1="32" y1="56" x2="32" y2="62" stroke="#1c1c21" stroke-width="1.5"/>
+  <line x1="2" y1="32" x2="8" y2="32" stroke="#1c1c21" stroke-width="1.5"/>
+  <line x1="56" y1="32" x2="62" y2="32" stroke="#1c1c21" stroke-width="1.5"/>
+  <line x1="7.5" y1="7.5" x2="11.8" y2="11.8" stroke="#1c1c21" stroke-width="1.5"/>
+  <line x1="52.2" y1="52.2" x2="56.5" y2="56.5" stroke="#1c1c21" stroke-width="1.5"/>
+  <line x1="7.5" y1="56.5" x2="11.8" y2="52.2" stroke="#1c1c21" stroke-width="1.5"/>
+  <line x1="52.2" y1="11.8" x2="56.5" y2="7.5" stroke="#1c1c21" stroke-width="1.5"/>
+</svg>

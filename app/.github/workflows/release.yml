@@ -1,0 +1,63 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: |
+          cd src
+          npm install
+
+      - name: Build EXE
+        run: |
+          cd src
+          npx @yao-pkg/pkg -t node22-win-x64 index.js -o ..\build\CasinoBot.exe
+          mkdir ..\build -Force | Out-Null
+
+      - name: Install Inno Setup
+        run: choco install innosetup --no-progress -y
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build Dashboard (PyInstaller)
+        run: |
+          pip install customtkinter requests pyinstaller
+          pyinstaller --onefile --windowed --name CasinoDashboard --distpath build src/ui/main.py
+
+      - name: Build Installer
+        shell: pwsh
+        run: |
+          .\scripts\build-installer.ps1 -Version $env:GITHUB_REF_NAME.Replace('v','')
+          Copy-Item build/CasinoBot-Setup-*.exe build/CasinoBot-Setup.exe
+
+      - name: Create Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create $env:GITHUB_REF_NAME `
+            build/CasinoBot.exe `
+            build/CasinoDashboard.exe `
+            build/CasinoBot-Setup-*.exe `
+            build/CasinoBot-Setup.exe `
+            --title "Claim City 2026 $env:GITHUB_REF_NAME" `
+            --generate-notes

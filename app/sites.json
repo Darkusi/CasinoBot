@@ -1,0 +1,576 @@
+[
+  {
+    "name": "Crown Coins",
+    "domain": "crowncoinscasino.com",
+    "url": "https://www.crowncoinscasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "McLuck",
+    "domain": "mcluck.com",
+    "url": "https://www.mcluck.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Spree",
+    "domain": "spree.com",
+    "url": "https://www.spree.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Pulsz",
+    "domain": "pulsz.com",
+    "url": "https://www.pulsz.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "PlayFame",
+    "domain": "playfame.com",
+    "url": "https://www.playfame.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Jackpota",
+    "domain": "jackpota.com",
+    "url": "https://www.jackpota.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Stake.us",
+    "domain": "stake.us",
+    "url": "https://stake.us",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Hello Millions",
+    "domain": "hellomillions.com",
+    "url": "https://www.hellomillions.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Shuffle",
+    "domain": "shuffle.com",
+    "url": "https://www.shuffle.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "MyPrize",
+    "domain": "myprize.com",
+    "url": "https://www.myprize.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "LoneStar Casino",
+    "domain": "lonestarcasino.com",
+    "url": "https://www.lonestarcasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "RealPrize",
+    "domain": "realprize.com",
+    "url": "https://www.realprize.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "WOW Vegas",
+    "domain": "wowvegas.com",
+    "url": "https://www.wowvegas.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Modo",
+    "domain": "modocasino.com",
+    "url": "https://www.modocasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "SpinBlitz",
+    "domain": "spinblitz.com",
+    "url": "https://www.spinblitz.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "ReBet",
+    "domain": "rebet.com",
+    "url": "https://www.rebet.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Pulsz Bingo",
+    "domain": "pulszbingo.com",
+    "url": "https://www.pulszbingo.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Legendz",
+    "domain": "legendz.com",
+    "url": "https://www.legendz.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "LuckyHands",
+    "domain": "luckyhands.com",
+    "url": "https://www.luckyhands.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "MegaBonanza",
+    "domain": "megabonanza.com",
+    "url": "https://www.megabonanza.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Card Crush",
+    "domain": "cardcrush.com",
+    "url": "https://www.cardcrush.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Dogg House",
+    "domain": "dogghousecasino.com",
+    "url": "https://www.dogghousecasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Zula Casino",
+    "domain": "zulacasino.com",
+    "url": "https://www.zulacasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Fortune Wins",
+    "domain": "fortunecoins.com",
+    "url": "https://www.fortunecoins.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Sportzino",
+    "domain": "sportzino.com",
+    "url": "https://www.sportzino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "LuckyLand Slots",
+    "domain": "luckylandslots.com",
+    "url": "https://www.luckylandslots.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "LuckyLand Casino",
+    "domain": "luckylandcasino.com",
+    "url": "https://www.luckylandcasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Chumba Casino",
+    "domain": "chumbacasino.com",
+    "url": "https://www.chumbacasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "CoinsBack Casino",
+    "domain": "coinsback.com",
+    "url": "https://www.coinsback.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Coin Wizard",
+    "domain": "coinwizard.com",
+    "url": "https://www.coinwizard.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Clash5",
+    "domain": "clash5.com",
+    "url": "https://www.clash5.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "ThrillCoins",
+    "domain": "thrillcoins.com",
+    "url": "https://www.thrillcoins.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "SweetSweeps",
+    "domain": "sweetsweeps.com",
+    "url": "https://www.sweetsweeps.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "LuckyRush",
+    "domain": "luckyrush.com",
+    "url": "https://www.luckyrush.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "FortunaRush",
+    "domain": "fortunarush.com",
+    "url": "https://www.fortunarush.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "BangCoins",
+    "domain": "bangcoins.com",
+    "url": "https://www.bangcoins.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "DimeSweeps",
+    "domain": "dimesweeps.com",
+    "url": "https://www.dimesweeps.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "SweepsRoyal",
+    "domain": "sweepsroyal.com",
+    "url": "https://www.sweepsroyal.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "RichSweeps",
+    "domain": "richsweeps.com",
+    "url": "https://www.richsweeps.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "SpeedSweeps",
+    "domain": "speedsweeps.com",
+    "url": "https://www.speedsweeps.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Ace",
+    "domain": "acecasino.com",
+    "url": "https://www.acecasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Jackpot Go",
+    "domain": "jackpotgo.com",
+    "url": "https://www.jackpotgo.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "WinBonanza",
+    "domain": "winbonanza.com",
+    "url": "https://www.winbonanza.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Stackr",
+    "domain": "stackr.com",
+    "url": "https://www.stackr.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Novig",
+    "domain": "novig.com",
+    "url": "https://www.novig.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Dara",
+    "domain": "daracasino.com",
+    "url": "https://www.daracasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Chanced",
+    "domain": "chanced.com",
+    "url": "https://www.chanced.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Rolla",
+    "domain": "rolla.com",
+    "url": "https://www.rolla.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Clubs",
+    "domain": "clubs.casino",
+    "url": "https://www.clubs.casino",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "ChipNWin",
+    "domain": "chipnwin.com",
+    "url": "https://www.chipnwin.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Legacy Arcade",
+    "domain": "legacyarcade.com",
+    "url": "https://www.legacyarcade.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Golden Hearts",
+    "domain": "goldenheartsgames.com",
+    "url": "https://www.goldenheartsgames.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Fliff",
+    "domain": "fliff.com",
+    "url": "https://www.fliff.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Thrillz",
+    "domain": "thrillz.com",
+    "url": "https://www.thrillz.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Global Poker",
+    "domain": "globalpoker.com",
+    "url": "https://www.globalpoker.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "American Luck",
+    "domain": "americanluck.com",
+    "url": "https://www.americanluck.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Moozi",
+    "domain": "moozi.com",
+    "url": "https://www.moozi.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Punt",
+    "domain": "punt.com",
+    "url": "https://www.punt.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Yay",
+    "domain": "yaycasino.com",
+    "url": "https://www.yaycasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "TaoSweeps",
+    "domain": "taosweeps.com",
+    "url": "https://www.taosweeps.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "OceanKing",
+    "domain": "oceankingcasino.com",
+    "url": "https://www.oceankingcasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Scoop",
+    "domain": "scoopcasino.com",
+    "url": "https://www.scoopcasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "SweepsUSA",
+    "domain": "sweepsusa.com",
+    "url": "https://www.sweepsusa.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "SweepNext",
+    "domain": "sweepnext.com",
+    "url": "https://www.sweepnext.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Wild",
+    "domain": "wild.io",
+    "url": "https://www.wild.io",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Baba",
+    "domain": "babacasino.com",
+    "url": "https://www.babacasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "High5",
+    "domain": "high5casino.com",
+    "url": "https://www.high5casino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "LuckyBits Vegas",
+    "domain": "luckybitsvegas.com",
+    "url": "https://www.luckybitsvegas.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Lavish Luck",
+    "domain": "lavishluck.com",
+    "url": "https://www.lavishluck.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "AcornFun",
+    "domain": "acornfun.com",
+    "url": "https://www.acornfun.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "LunaLand",
+    "domain": "lunaland.com",
+    "url": "https://www.lunaland.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "LuckParty",
+    "domain": "luckparty.com",
+    "url": "https://www.luckparty.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "PeakPlay",
+    "domain": "peakplay.com",
+    "url": "https://www.peakplay.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Ruby Sweeps",
+    "domain": "rubysweeps.com",
+    "url": "https://www.rubysweeps.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Cluck",
+    "domain": "cluck.com",
+    "url": "https://www.cluck.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "SpinSaga",
+    "domain": "spinsaga.com",
+    "url": "https://www.spinsaga.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "SorceryReels",
+    "domain": "sorceryreels.com",
+    "url": "https://www.sorceryreels.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Betr",
+    "domain": "betr.com",
+    "url": "https://www.betr.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "SpinPals",
+    "domain": "spinpals.com",
+    "url": "https://www.spinpals.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Sidepot",
+    "domain": "sidepot.com",
+    "url": "https://www.sidepot.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "Scrooge",
+    "domain": "scroogecasino.com",
+    "url": "https://www.scroogecasino.com",
+    "sc_per_day": 1,
+    "has_spins": true
+  },
+  {
+    "name": "BetOnline",
+    "domain": "betonline.ag",
+    "url": "https://www.betonline.ag",
+    "sc_per_day": 1,
+    "has_spins": false
+  }
+]
