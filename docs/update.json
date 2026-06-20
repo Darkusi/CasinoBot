@@ -1,6 +1,6 @@
 {
     "version": "v1.2.0",
     "url": "https://github.com/Darkusi/CasinoBot/releases/download/v1.2.0/CasinoBot.exe",
-    "size": 50963881,
-    "notes": "v1.2.0 - License tab, Profiles tab, .env Discord token, Start Automation guard, 50 license keys"
+    "size": 50965046,
+    "notes": "v1.2.0 - Removed License tab (moved to Settings), inline Profiles form, full spacing polish, no more popup dialogs for creds"
 }

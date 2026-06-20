@@ -79,7 +79,6 @@ QFrame, QGroupBox, QTabWidget, QStackedWidget { background: transparent; }
 #sidebar QPushButton:checked {
     background: rgba(255,215,0,0.06); color: #FFD700; border-left: 2px solid #FFD700;
 }
-#sidebar #navsep { background: rgba(255,255,255,0.04); max-height: 1px; min-height: 1px; margin: 4px 16px; }
 
 /* ---- Buttons ---- */
 QPushButton {
@@ -106,19 +105,19 @@ QGroupBox, #sc {
     background: rgba(22,22,34,0.55);
     border: 1px solid rgba(255,255,255,0.05);
     border-radius: 10px;
-    padding: 10px 10px 8px;
+    padding: 12px 12px 10px;
     font-weight: 500; font-size: 11px; color: #888;
 }
 QGroupBox:hover, #sc:hover { background: rgba(24,24,38,0.7); border-color: rgba(255,215,0,0.15); }
-QGroupBox::title { subcontrol-origin: margin; left: 8px; padding: 0 4px; color: #888; }
+QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 6px; color: #aaa; font-weight:600; }
 
 /* ---- Inputs ---- */
 QLineEdit {
     background: rgba(255,255,255,0.02); color: #e8e8ed; border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 8px; padding: 8px 12px; font-size: 13px;
+    border-radius: 6px; padding: 6px 10px; font-size: 13px; min-height: 20px;
 }
 QLineEdit:focus { border-color: #FFD700; background: rgba(255,215,0,0.03); }
-QSpinBox { background: rgba(255,255,255,0.02); color: #e8e8ed; border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 6px 10px; font-size: 13px; }
+QSpinBox { background: rgba(255,255,255,0.02); color: #e8e8ed; border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 6px 10px; font-size: 13px; min-height: 20px; }
 QSpinBox:focus { border-color: #FFD700; }
 QCheckBox { color: #888; font-size: 13px; spacing: 8px; }
 QCheckBox::indicator { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.12); border-radius: 4px; background: transparent; }
@@ -129,7 +128,7 @@ QTableWidget {
     background: rgba(255,255,255,0.015); color: #e8e8ed; border: 1px solid rgba(255,255,255,0.04);
     border-radius: 10px; gridline-color: rgba(255,255,255,0.015); font-size: 13px;
 }
-QTableWidget::item { padding: 6px 8px; }
+QTableWidget::item { padding: 8px 10px; }
 QTableWidget::item:selected { background: rgba(255,215,0,0.05); color: #FFD700; }
 QTableWidget::item:hover { background: rgba(255,255,255,0.015); }
 QHeaderView::section {
@@ -138,7 +137,7 @@ QHeaderView::section {
 }
 
 /* ---- Labels ---- */
-QLabel#title { font-size: 20px; font-weight: 700; color: #f0f0f5; }
+QLabel#title { font-size: 18px; font-weight: 700; color: #f0f0f5; margin-bottom:4px; }
 QLabel#statv { font-size: 26px; font-weight: 700; }
 QLabel#statl { font-size: 11px; color: #666; }
 
@@ -159,12 +158,12 @@ QScrollBar::handle:vertical:hover { background: rgba(255,255,255,0.12); }
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
 
 /* ---- Splitter ---- */
-QSplitter::handle { background: rgba(255,255,255,0.03); width: 1px; }
+QSplitter::handle { background: rgba(255,255,255,0.05); width: 3px; }
 
 /* ---- Combo Box ---- */
 QComboBox {
     background: rgba(255,255,255,0.02); color: #e8e8ed; border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 8px; padding: 6px 10px; font-size: 13px; min-height: 20px;
+    border-radius: 6px; padding: 6px 10px; font-size: 13px; min-height: 20px;
 }
 QComboBox:focus { border-color: #FFD700; }
 QComboBox::drop-down { border: none; width: 24px; }
@@ -186,8 +185,8 @@ class StatCard(QFrame):
         self.setStyleSheet(f"#sc{{background:rgba(22,22,34,0.5);border:1px solid rgba(255,255,255,0.04);border-radius:12px;padding:16px;}}"
                            f"#sc:hover{{border-color:rgba(255,215,0,0.2);background:rgba(24,24,38,0.65);}}")
         lo = QVBoxLayout()
-        lo.setContentsMargins(14, 10, 14, 10)
-        lo.setSpacing(2)
+        lo.setContentsMargins(12,10,12,10)
+        lo.setSpacing(4)
         self.v = QLabel(initial)
         self.v.setObjectName("statv")
         self.v.setStyleSheet(f"font-size:30px;font-weight:800;color:{color};")
@@ -464,115 +463,6 @@ class ProcessQueueWorker(QThread):
         self.progress.emit(100, f"Queue complete \u2014 {total} links processed")
         self.finished.emit()
 
-# ═══════════════════════════════════════════════════════════════
-# LICENSE TAB
-# ═══════════════════════════════════════════════════════════════
-
-class LicenseTab(QWidget):
-    def __init__(self):
-        super().__init__()
-        lo = QVBoxLayout()
-        lo.setContentsMargins(16,16,16,16); lo.setSpacing(14)
-
-        t = QLabel("License")
-        t.setObjectName("title"); lo.addWidget(t)
-
-        # License info card
-        card = QGroupBox("License Information")
-        cl = QVBoxLayout(); cl.setContentsMargins(16,16,16,16); cl.setSpacing(10)
-
-        # Read license.dat
-        lf = BASE_DIR / "license.dat"
-        key = "—"; tier = "—"; status = "—"; hwid = "—"; activated = "—"
-        if lf.exists():
-            try:
-                with open(lf) as f: ld = json.load(f)
-                key = ld.get("key", "—")
-                tier = ld.get("tier", "—").upper()
-                hwid_raw = ld.get("hwid", "—")
-                hwid = hwid_raw[:16] + "..." if len(hwid_raw) > 16 else hwid_raw
-                at = ld.get("at", 0)
-                activated = datetime.fromtimestamp(at).strftime("%m/%d/%Y %H:%M") if at else "—"
-                # Online re-validation
-                try:
-                    r = combined.requests.post(LICENSE_SERVER_URL, json={"key": key, "hwid": hwid_raw}, timeout=3)
-                    if r.status_code == 200 and r.json().get("valid"):
-                        status = "ACTIVE"
-                    else:
-                        # Fallback local
-                        status = "ACTIVE" if combined.validate_license_key(key).get("valid") else "INVALID"
-                except:
-                    status = "ACTIVE" if combined.validate_license_key(key).get("valid") else "OFFLINE"
-            except:
-                status = "ERROR"
-
-        info_layout = QFormLayout(); info_layout.setSpacing(8)
-        rows = [
-            ("License Key:", QLabel(key)),
-            ("Tier:", QLabel(tier)),
-            ("Status:", QLabel(status)),
-            ("Hardware ID:", QLabel(hwid)),
-            ("Activated:", QLabel(activated)),
-        ]
-        for lbl, val in rows:
-            val.setStyleSheet("color:#e8e8ed;font-weight:600;font-size:13px;")
-            if lbl == "Status:":
-                c = "#22c55e" if status == "ACTIVE" else "#ef4444"
-                val.setStyleSheet(f"color:{c};font-weight:700;font-size:14px;")
-            elif lbl == "Tier:":
-                val.setStyleSheet("color:#FFD700;font-weight:700;font-size:13px;")
-            info_layout.addRow(QLabel(lbl), val)
-        cl.addLayout(info_layout)
-
-        # Buttons
-        btn_row = QHBoxLayout(); btn_row.setSpacing(8)
-        refresh_btn = AnimatedButton("Refresh License", variant="success")
-        refresh_btn.clicked.connect(self.refresh_license)
-        btn_row.addWidget(refresh_btn)
-        deactivate_btn = AnimatedButton("Deactivate", variant="danger")
-        deactivate_btn.clicked.connect(self.deactivate)
-        btn_row.addWidget(deactivate_btn)
-        btn_row.addStretch()
-        cl.addLayout(btn_row)
-
-        # App version + build info
-        ver_lbl = QLabel(f"Claims Casino Automation Suite  {APP_VERSION}")
-        ver_lbl.setStyleSheet("color:#555;font-size:11px;")
-        cl.addWidget(ver_lbl)
-
-        card.setLayout(cl); lo.addWidget(card)
-        lo.addStretch()
-        self.setLayout(lo)
-
-    def refresh_license(self):
-        lf = BASE_DIR / "license.dat"
-        if not lf.exists():
-            QMessageBox.warning(self, "License", "No license file found.")
-            return
-        with open(lf) as f: ld = json.load(f)
-        key = ld.get("key", "")
-        hwid = ld.get("hwid", "")
-        try:
-            r = combined.requests.post(LICENSE_SERVER_URL, json={"key": key, "hwid": hwid}, timeout=5)
-            if r.status_code == 200 and r.json().get("valid"):
-                QMessageBox.information(self, "License", "License is valid and active.")
-            else:
-                QMessageBox.warning(self, "License", "License rejected by server.")
-        except:
-            local = combined.validate_license_key(key)
-            if local.get("valid"):
-                QMessageBox.information(self, "License", "License valid (offline mode).")
-            else:
-                QMessageBox.warning(self, "License", f"License invalid: {local.get('reason','Unknown')}")
-
-    def deactivate(self):
-        resp = QMessageBox.question(self, "Deactivate",
-            "Remove license from this machine?\nYou will need to re-enter your key to continue.",
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
-        if resp != QMessageBox.StandardButton.Yes: return
-        lf = BASE_DIR / "license.dat"
-        if lf.exists(): lf.unlink()
-        QMessageBox.information(self, "Deactivated", "License removed. Restart to activate again.")
 
 # ═══════════════════════════════════════════════════════════════
 # DASHBOARD TAB
@@ -582,8 +472,8 @@ class DashboardTab(QWidget):
     def __init__(self):
         super().__init__()
         lo = QVBoxLayout()
-        lo.setContentsMargins(16, 16, 16, 16)
-        lo.setSpacing(14)
+        lo.setContentsMargins(12,12,12,12)
+        lo.setSpacing(10)
 
         t = QLabel("Dashboard")
         t.setObjectName("title")
@@ -600,7 +490,7 @@ class DashboardTab(QWidget):
 
         # Control center
         mc = QGroupBox("Dashboard")
-        mcl = QVBoxLayout(); mcl.setContentsMargins(8,8,8,8); mcl.setSpacing(6)
+        mcl = QVBoxLayout(); mcl.setContentsMargins(8,8,8,8); mcl.setSpacing(8)
         self.master_btn = AnimatedButton("Start All", variant="success")
         self.master_btn.setStyleSheet("font-size:15px;font-weight:700;padding:14px 32px;border-radius:10px;")
         self.master_btn.clicked.connect(self.toggle_master)
@@ -743,13 +633,13 @@ class ProfilesTab(QWidget):
     def __init__(self):
         super().__init__()
         lo = QVBoxLayout()
-        lo.setContentsMargins(16,16,16,16); lo.setSpacing(12)
+        lo.setContentsMargins(12,12,12,12); lo.setSpacing(10)
 
         t = QLabel("Profiles")
         t.setObjectName("title"); lo.addWidget(t)
 
         # Toolbar
-        tb = QHBoxLayout(); tb.setSpacing(6)
+        tb = QHBoxLayout(); tb.setSpacing(8)
         self.add_btn = AnimatedButton("+ Add", variant="gold")
         self.add_btn.clicked.connect(self.add_profile)
         tb.addWidget(self.add_btn)
@@ -761,9 +651,84 @@ class ProfilesTab(QWidget):
         tb.addWidget(self.profile_count_lbl)
         lo.addLayout(tb)
 
+        # Inline credential form (hidden by default)
+        self._editing_domain = None
+        self.form_frame = QFrame()
+        self.form_frame.setObjectName("sc")
+        self.form_frame.setStyleSheet("#sc{background:rgba(22,22,34,0.7);border:1px solid rgba(255,215,0,0.12);border-radius:10px;padding:8px;}"
+                                       "#sc:hover{border-color:rgba(255,215,0,0.2);}")
+        self.form_frame.setVisible(False)
+        fl = QVBoxLayout(self.form_frame); fl.setContentsMargins(12,10,12,10); fl.setSpacing(8)
+
+        # Casino dropdown
+        fl.addWidget(QLabel("Casino"))
+        self._form_casino = QComboBox()
+        self._form_casino.setEditable(True)
+        sites = combined.load_sites()
+        for s in sites:
+            self._form_casino.addItem(f"{s['name']} ({s['domain']})", s["domain"])
+        fl.addWidget(self._form_casino)
+
+        # Username
+        fl.addWidget(QLabel("Username"))
+        self._form_user = QLineEdit()
+        self._form_user.setPlaceholderText("Account email")
+        fl.addWidget(self._form_user)
+
+        # Password
+        fl.addWidget(QLabel("Password"))
+        pw_row = QHBoxLayout(); pw_row.setSpacing(6)
+        self._form_pass = QLineEdit()
+        self._form_pass.setPlaceholderText("Password")
+        self._form_pass.setEchoMode(QLineEdit.EchoMode.Password)
+        pw_row.addWidget(self._form_pass)
+        self._form_show_pw = QPushButton("👁")
+        self._form_show_pw.setFixedWidth(36)
+        self._form_show_pw.setStyleSheet("font-size:14px;padding:4px;border-radius:6px;")
+        self._form_show_pw.setCheckable(True)
+        self._form_show_pw.toggled.connect(lambda checked: self._form_pass.setEchoMode(
+            QLineEdit.EchoMode.Normal if checked else QLineEdit.EchoMode.Password))
+        pw_row.addWidget(self._form_show_pw)
+        fl.addLayout(pw_row)
+
+        # Login Method
+        self._form_lm = "email"
+        lm_row = QHBoxLayout(); lm_row.setSpacing(6)
+        fl.addWidget(QLabel("Login Method"))
+        self._form_google_btn = QPushButton("  Google Sign-In")
+        self._form_google_btn.setStyleSheet("QPushButton{background:#4285F4;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:12px;font-weight:600;}"
+            "QPushButton:hover{background:#3367D6;}QPushButton:disabled{background:#333;color:#555;}")
+        self._form_google_btn.clicked.connect(lambda: self._form_set_lm("google"))
+        self._form_apple_btn = QPushButton("⌘  Apple Sign-In")
+        self._form_apple_btn.setStyleSheet("QPushButton{background:#1a1a1a;color:#fff;border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:8px 14px;font-size:12px;font-weight:600;}"
+            "QPushButton:hover{background:#333;}QPushButton:disabled{background:#111;color:#555;}")
+        self._form_apple_btn.clicked.connect(lambda: self._form_set_lm("apple"))
+        self._form_email_btn = QPushButton("@  Email")
+        self._form_email_btn.setStyleSheet("QPushButton{background:#64748b;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:12px;font-weight:600;}"
+            "QPushButton:hover{background:#475569;}")
+        self._form_email_btn.clicked.connect(lambda: self._form_set_lm("email"))
+        lm_row.addWidget(self._form_google_btn)
+        lm_row.addWidget(self._form_apple_btn)
+        lm_row.addWidget(self._form_email_btn)
+        lm_row.addStretch()
+        fl.addLayout(lm_row)
+
+        # Save / Cancel buttons
+        form_btn_row = QHBoxLayout(); form_btn_row.setSpacing(8)
+        form_save = AnimatedButton("Save", variant="gold")
+        form_save.clicked.connect(self._form_save)
+        form_cancel = AnimatedButton("Cancel")
+        form_cancel.clicked.connect(lambda: self.form_frame.setVisible(False))
+        form_btn_row.addWidget(form_save)
+        form_btn_row.addWidget(form_cancel)
+        form_btn_row.addStretch()
+        fl.addLayout(form_btn_row)
+
+        lo.addWidget(self.form_frame)
+
         # Profiles table
         sg = QGroupBox("Casino Accounts")
-        sl = QVBoxLayout(); sl.setContentsMargins(8,8,8,8); sl.setSpacing(6)
+        sl = QVBoxLayout(); sl.setContentsMargins(10,10,10,10); sl.setSpacing(8)
         self.profile_tbl = QTableWidget()
         self.profile_tbl.setColumnCount(6)
         self.profile_tbl.setHorizontalHeaderLabels(["Casino","Username","Method","SC Total","Status",""])
@@ -821,44 +786,74 @@ class ProfilesTab(QWidget):
         self.profile_tbl.setRowCount(len(accts))
 
     def add_profile(self):
-        d = AddAccountDlg(self)
-        if d.exec():
-            dom, un, pw, lm = d.vals()
-            if dom and un and pw:
-                accts = combined.load_accounts()
-                entry = {"username": un, "password": pw, "sc_total": 0, "login_method": lm}
-                if d._oauth_result:
-                    entry["cookies"] = d._oauth_result
-                    self.log(f"[PROFILES] {lm} session captured for {dom}")
-                elif lm in ("google", "apple"):
-                    self.log(f"[PROFILES] {lm} session capture incomplete for {dom}")
-                accts[dom] = entry
-                combined.save_accounts(accts)
-                self.log(f"[PROFILES] Added {dom}")
-                self.load()
+        self._editing_domain = None
+        self._form_casino.setCurrentIndex(-1)
+        self._form_casino.setEditText("")
+        self._form_user.setText("")
+        self._form_pass.setText("")
+        self._form_set_lm("email")
+        self.form_frame.setVisible(True)
 
     def edit_profile(self, dom):
         accts = combined.load_accounts()
         if dom not in accts: return
         info = accts[dom]
-        d = AddAccountDlg(self)
-        d.d.setCurrentText(dom)
-        d.u.setText(info.get("username",""))
-        d.p.setText(info.get("password",""))
-        d._lm = info.get("login_method","email")
-        if d.exec():
-            new_dom, un, pw, lm = d.vals()
-            old_info = accts.pop(dom)
-            entry = {"username": un, "password": pw, "sc_total": old_info.get("sc_total",0), "login_method": lm}
-            if d._oauth_result:
-                entry["cookies"] = d._oauth_result
-                self.log(f"[PROFILES] {lm} session captured for {new_dom}")
-            elif lm in ("google", "apple") and not d._oauth_result:
-                self.log(f"[PROFILES] {lm} session incomplete for {new_dom}")
-            accts[new_dom] = entry
-            combined.save_accounts(accts)
-            self.log(f"[PROFILES] Updated {new_dom}")
-            self.load()
+        self._editing_domain = dom
+        # Set casino
+        idx = self._form_casino.findData(dom)
+        if idx >= 0:
+            self._form_casino.setCurrentIndex(idx)
+        else:
+            self._form_casino.setEditText(dom)
+        self._form_user.setText(info.get("username",""))
+        self._form_pass.setText(info.get("password",""))
+        self._form_set_lm(info.get("login_method","email"))
+        self.form_frame.setVisible(True)
+
+    def _form_set_lm(self, method):
+        self._form_lm = method
+        self._form_google_btn.setStyleSheet(
+            "QPushButton{background:#4285F4;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:12px;font-weight:600;}"
+            "QPushButton:hover{background:#3367D6;}QPushButton:disabled{background:#333;color:#555;}" if method == "google"
+            else "QPushButton{background:rgba(66,133,244,0.15);color:#888;border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:8px 14px;font-size:12px;font-weight:500;}"
+            "QPushButton:hover{background:rgba(66,133,244,0.25);color:#ccc;}")
+        self._form_apple_btn.setStyleSheet(
+            "QPushButton{background:#1a1a1a;color:#fff;border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:8px 14px;font-size:12px;font-weight:600;}"
+            "QPushButton:hover{background:#333;}" if method == "apple"
+            else "QPushButton{background:rgba(0,0,0,0.2);color:#888;border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:8px 14px;font-size:12px;font-weight:500;}"
+            "QPushButton:hover{background:rgba(0,0,0,0.3);color:#ccc;}")
+        self._form_email_btn.setStyleSheet(
+            "QPushButton{background:#64748b;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:12px;font-weight:600;}"
+            "QPushButton:hover{background:#475569;}" if method == "email"
+            else "QPushButton{background:rgba(100,116,139,0.15);color:#888;border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:8px 14px;font-size:12px;font-weight:500;}"
+            "QPushButton:hover{background:rgba(100,116,139,0.25);color:#ccc;}")
+
+    def _form_save(self):
+        dom = self._form_casino.currentData() or self._form_casino.currentText().strip()
+        un = self._form_user.text().strip()
+        pw = self._form_pass.text().strip()
+        lm = self._form_lm
+
+        if not dom or not un or not pw:
+            QMessageBox.warning(self, "Incomplete", "Casino, Username, and Password are required.")
+            return
+
+        accts = combined.load_accounts()
+        if self._editing_domain and self._editing_domain in accts and self._editing_domain != dom:
+            # Domain changed — remove old entry
+            old_info = accts.pop(self._editing_domain)
+        elif self._editing_domain and self._editing_domain in accts:
+            old_info = accts[self._editing_domain]
+        else:
+            old_info = {"sc_total": 0}
+
+        entry = {"username": un, "password": pw, "sc_total": old_info.get("sc_total", 0), "login_method": lm}
+        accts[dom] = entry
+        combined.save_accounts(accts)
+        action = "Updated" if self._editing_domain else "Added"
+        self.log(f"[PROFILES] {action} {dom}")
+        self.form_frame.setVisible(False)
+        self.load()
 
     def delete_profile(self, dom):
         if QMessageBox.question(self,"Delete Profile",f"Remove {dom}?",
@@ -912,8 +907,8 @@ class DailySCTab(QWidget):
         self._stop_flag = threading.Event()
         self.workers = []
         lo = QVBoxLayout()
-        lo.setContentsMargins(16, 16, 16, 16)
-        lo.setSpacing(12)
+        lo.setContentsMargins(12,12,12,12)
+        lo.setSpacing(10)
 
         t = QLabel("Daily SC")
         t.setObjectName("title")
@@ -922,12 +917,12 @@ class DailySCTab(QWidget):
         # Summary + Upcoming Claims row
         sum_row = QHBoxLayout(); sum_row.setSpacing(16)
         sg = QGroupBox("Summary")
-        sl = QHBoxLayout(); sl.setSpacing(16); sl.setContentsMargins(10, 8, 10, 8)
+        sl = QHBoxLayout(); sl.setSpacing(16); sl.setContentsMargins(12,10,12,10)
         self.daily_stat_labels = []
         for label, color in [("Total","#888"),("SC","#FFD700"),("Pending","#eab308"),("Rate","#10b981"),("Coverage","#6366f1")]:
             c = QVBoxLayout()
             c.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            c.setSpacing(2)
+            c.setSpacing(4)
             lbl = QLabel("0")
             lbl.setStyleSheet(f"font-size:20px;font-weight:700;color:{color};")
             c.addWidget(lbl)
@@ -939,7 +934,7 @@ class DailySCTab(QWidget):
         sg.setLayout(sl); sum_row.addWidget(sg)
 
         ng = QGroupBox("Upcoming")
-        nl = QVBoxLayout(); nl.setContentsMargins(8,8,8,8); nl.setSpacing(6)
+        nl = QVBoxLayout(); nl.setContentsMargins(10,10,10,10); nl.setSpacing(6)
         self.next_tbl = QTableWidget()
         self.next_tbl.setColumnCount(3)
         self.next_tbl.setHorizontalHeaderLabels(["Casino","Ready In","Status"])
@@ -953,21 +948,17 @@ class DailySCTab(QWidget):
         lo.addLayout(sum_row)
 
         # Toolbar
-        tb = QHBoxLayout(); tb.setSpacing(4)
+        tb = QHBoxLayout(); tb.setSpacing(8)
         mon = QLabel("\u25cf Monitoring 24/7"); mon.setStyleSheet("color:#10b981;font-size:12px;padding:0 4px;")
         tb.addWidget(mon)
         tb.addStretch()
-        tb.addSpacing(8)
-        a = AnimatedButton("+ Add", variant="gold"); a.clicked.connect(self.add); tb.addWidget(a)
-        sep = QFrame(); sep.setFrameShape(QFrame.Shape.VLine); sep.setStyleSheet("color:rgba(255,255,255,0.08);max-width:1px;")
-        tb.addWidget(sep)
         tb.addSpacing(8)
         imp = AnimatedButton("Import"); imp.clicked.connect(self.import_accts); tb.addWidget(imp)
         r = AnimatedButton("Refresh"); r.clicked.connect(self.load); tb.addWidget(r); lo.addLayout(tb)
 
         # Accounts table (stretch)
         aw = QGroupBox("Accounts")
-        al = QVBoxLayout(aw); al.setContentsMargins(8,8,8,8); al.setSpacing(6)
+        al = QVBoxLayout(aw); al.setContentsMargins(10,10,10,10); al.setSpacing(6)
         self.tbl = QTableWidget()
         self.tbl.setColumnCount(8)
         self.tbl.setHorizontalHeaderLabels(["Domain","Username","Login","Last Claim","Status","SC Total","Edit","Delete"])
@@ -1168,21 +1159,7 @@ class DailySCTab(QWidget):
         except Exception as e:
             QMessageBox.warning(self, "Import Failed", str(e))
 
-    def add(self):
-        d = AddAccountDlg(self)
-        if d.exec():
-            dom,un,pw,lm = d.vals()
-            if dom and un and pw:
-                accts = combined.load_accounts()
-                entry = {"username": un, "password": pw, "sc_total": 0, "login_method": lm}
-                if d._oauth_result:
-                    entry["cookies"] = d._oauth_result
-                    self.log(f"[SC] {lm} session captured for {dom}")
-                elif lm in ("google", "apple"):
-                    self.log(f"[SC] {lm} session capture incomplete for {dom}")
-                accts[dom] = entry
-                combined.save_accounts(accts)
-                self.load()
+
 
 class AddAccountDlg(QDialog):
     def __init__(self,parent=None):
@@ -1291,7 +1268,7 @@ class StreamerSniperTab(QWidget):
     def __init__(self):
         super().__init__()
         lo = QVBoxLayout()
-        lo.setContentsMargins(16,16,16,16); lo.setSpacing(12)
+        lo.setContentsMargins(12,12,12,12); lo.setSpacing(10)
 
         t = QLabel("Streamer Sniper")
         t.setObjectName("title"); lo.addWidget(t)
@@ -1311,7 +1288,7 @@ class StreamerSniperTab(QWidget):
 
         # Streamer list
         sg = QGroupBox("Monitored Streamers")
-        sl = QVBoxLayout(); sl.setContentsMargins(8,8,8,8); sl.setSpacing(6)
+        sl = QVBoxLayout(); sl.setContentsMargins(10,10,10,10); sl.setSpacing(8)
         self.streamer_list = QTableWidget()
         self.streamer_list.setColumnCount(4)
         self.streamer_list.setHorizontalHeaderLabels(["Platform","Username","Status","Last Seen"])
@@ -1330,7 +1307,7 @@ class StreamerSniperTab(QWidget):
         sg.setLayout(sl); lo.addWidget(sg)
 
         # Detection History + Log side by side
-        bot_row = QHBoxLayout(); bot_row.setSpacing(12)
+        bot_row = QHBoxLayout(); bot_row.setSpacing(10)
         dg = QGroupBox("Detections")
         dl = QVBoxLayout(dg); dl.setContentsMargins(8, 8, 8, 8); dl.setSpacing(6)
         self.detect_tbl = QTableWidget()
@@ -1470,17 +1447,17 @@ class LinkAutomationTab(QWidget):
     def __init__(self):
         super().__init__()
         lo = QVBoxLayout()
-        lo.setContentsMargins(16,16,16,16); lo.setSpacing(12)
+        lo.setContentsMargins(12,12,12,12); lo.setSpacing(10)
 
         t = QLabel("Link Automation")
         t.setObjectName("title"); lo.addWidget(t)
 
         # Stats frame
         sg = QGroupBox("Link Stats")
-        sl = QHBoxLayout(); sl.setContentsMargins(8,8,8,8); sl.setSpacing(6)
+        sl = QHBoxLayout(); sl.setContentsMargins(10,10,10,10); sl.setSpacing(8)
         self.link_stats_labels = []
         for label, color in [("Total","#888"),("Processed","#eab308"),("Success","#10b981"),("Failed","#ef4444"),("Rate","#6366f1")]:
-            c = QVBoxLayout(); c.setSpacing(2)
+            c = QVBoxLayout(); c.setSpacing(4)
             c.addWidget(QLabel("0"))
             c.addWidget(QLabel(label))
             c.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -1504,7 +1481,7 @@ class LinkAutomationTab(QWidget):
 
         # ── LEFT PANEL: Queue ──
         left_frame = QFrame()
-        left_lo = QVBoxLayout(left_frame); left_lo.setContentsMargins(4,4,4,4); left_lo.setSpacing(6)
+        left_lo = QVBoxLayout(left_frame); left_lo.setContentsMargins(6,6,6,6); left_lo.setSpacing(8)
 
         self.queue_tbl = QTableWidget()
         self.queue_tbl.setColumnCount(5)
@@ -1532,7 +1509,7 @@ class LinkAutomationTab(QWidget):
 
         # ── RIGHT PANEL: Flood Feed ──
         right_frame = QFrame()
-        right_lo = QVBoxLayout(right_frame); right_lo.setContentsMargins(4,4,4,4); right_lo.setSpacing(6)
+        right_lo = QVBoxLayout(right_frame); right_lo.setContentsMargins(6,6,6,6); right_lo.setSpacing(8)
 
         fg = QGroupBox("Flood Feed \u2014 Last 24h Free Drops")
         fgl = QVBoxLayout(fg); fgl.setContentsMargins(8,8,8,8); fgl.setSpacing(6)
@@ -1769,7 +1746,7 @@ class SettingsTab(QWidget):
         top_row = QHBoxLayout()
         bg = QGroupBox("Bot")
         bl = QFormLayout(); bl.setSpacing(6)
-        bl.setContentsMargins(8,8,8,8)
+        bl.setContentsMargins(10,10,10,10)
         self.hc = QCheckBox("Headless mode")
         self.hc.setChecked(combined.HEADLESS_MODE); bl.addRow(self.hc)
         self.sp = QSpinBox(); self.sp.setRange(10,600); self.sp.setValue(combined.CHECK_INTERVAL); self.sp.setSuffix("s")
@@ -1778,7 +1755,7 @@ class SettingsTab(QWidget):
 
         ng = QGroupBox("Notifications")
         nl = QVBoxLayout()
-        nl.setContentsMargins(8,8,8,8)
+        nl.setContentsMargins(10,10,10,10)
         whl = QHBoxLayout(); whl.setSpacing(6)
         self.webhook_input = QLineEdit()
         self.webhook_input.setPlaceholderText("Discord webhook URL")
@@ -1795,7 +1772,7 @@ class SettingsTab(QWidget):
         mid_row = QHBoxLayout()
         dg = QGroupBox("Data")
         dl = QHBoxLayout(); dl.setSpacing(6)
-        dl.setContentsMargins(8,8,8,8)
+        dl.setContentsMargins(10,10,10,10)
         exp_btn = AnimatedButton("Export All"); exp_btn.clicked.connect(self.export_data); dl.addWidget(exp_btn)
         imp_btn = AnimatedButton("Import All"); imp_btn.clicked.connect(self.import_data); dl.addWidget(imp_btn)
         cc_btn = AnimatedButton("Clear Cache"); cc_btn.clicked.connect(self.clear_cache); dl.addWidget(cc_btn)
@@ -1803,31 +1780,74 @@ class SettingsTab(QWidget):
 
         ag2 = QGroupBox("Advanced")
         al2 = QHBoxLayout(); al2.setSpacing(6)
-        al2.setContentsMargins(8,8,8,8)
+        al2.setContentsMargins(10,10,10,10)
         self.debug_cb = QCheckBox("Debug"); self.debug_cb.setChecked(False); al2.addWidget(self.debug_cb)
         self.verbose_cb = QCheckBox("Verbose"); self.verbose_cb.setChecked(False); al2.addWidget(self.verbose_cb)
         reset_btn = AnimatedButton("Reset All", variant="danger"); reset_btn.clicked.connect(self.reset_all); al2.addWidget(reset_btn)
         ag2.setLayout(al2); mid_row.addWidget(ag2)
         lo.addLayout(mid_row)
 
-        # About + bottom buttons
+        # License + About + bottom buttons
         bot_row = QHBoxLayout(); bot_row.setSpacing(12)
-        ag = QGroupBox("About")
-        al = QHBoxLayout(ag); al.setSpacing(14)
-        al.setContentsMargins(8,8,8,8)
+
+        lg = QGroupBox("License")
+        ll = QFormLayout(lg); ll.setSpacing(8)
+        ll.setContentsMargins(10,10,10,10)
+
+        # Read license.dat
         lf = BASE_DIR / "license.dat"
-        license_info = "No license"
         if lf.exists():
             try:
                 with open(lf) as f: ld = json.load(f)
-                license_info = f"{ld.get('key','N/A')}  |  {ld.get('tier','Premium')}"
-            except: license_info = "Corrupted"
-        al.addWidget(QLabel(f"{APP_VERSION}  |  {license_info}"))
+                lkey = ld.get("key", "—")
+                ltier = ld.get("tier", "—").upper()
+                lhwid_raw = ld.get("hwid", "—")
+                lhwid_display = lhwid_raw[:16] + "..." if len(lhwid_raw) > 16 else lhwid_raw
+                lat = ld.get("at", 0)
+                lactivated = datetime.fromtimestamp(lat).strftime("%m/%d/%Y %H:%M") if lat else "—"
+                try:
+                    r = combined.requests.post(LICENSE_SERVER_URL, json={"key": lkey, "hwid": lhwid_raw}, timeout=3)
+                    if r.status_code == 200 and r.json().get("valid"):
+                        lstatus = "ACTIVE"
+                    else:
+                        lstatus = "ACTIVE" if combined.validate_license_key(lkey).get("valid") else "INVALID"
+                except:
+                    lstatus = "ACTIVE" if combined.validate_license_key(lkey).get("valid") else "OFFLINE"
+            except:
+                lkey = "—"; ltier = "—"; lstatus = "ERROR"; lhwid_display = "—"; lactivated = "—"
+        else:
+            lkey = "—"; ltier = "—"; lstatus = "NO LICENSE"; lhwid_display = "—"; lactivated = "—"
+
+        def _mk_val(text, color="#e8e8ed", sz="13px", weight="600"):
+            lbl = QLabel(text); lbl.setStyleSheet(f"color:{color};font-weight:{weight};font-size:{sz};"); return lbl
+
+        ll.addRow("Key:", _mk_val(lkey, "#e8e8ed"))
+        ll.addRow("Tier:", _mk_val(ltier, "#FFD700"))
+        stat_c = "#22c55e" if lstatus == "ACTIVE" else "#ef4444"
+        ll.addRow("Status:", _mk_val(lstatus, stat_c, "14px", "700"))
+        ll.addRow("Hardware ID:", _mk_val(lhwid_display, "#e8e8ed"))
+        ll.addRow("Activated:", _mk_val(lactivated, "#e8e8ed"))
+
+        lic_btn_row = QHBoxLayout(); lic_btn_row.setSpacing(8)
+        refresh_btn = AnimatedButton("Refresh License", variant="success")
+        refresh_btn.clicked.connect(self._refresh_license)
+        deactivate_btn = AnimatedButton("Deactivate", variant="danger")
+        deactivate_btn.clicked.connect(self._deactivate_license)
+        lic_btn_row.addWidget(refresh_btn)
+        lic_btn_row.addWidget(deactivate_btn)
+        lic_btn_row.addStretch()
+        ll.addRow(lic_btn_row)
+
+        bot_row.addWidget(lg)
+
+        ag = QGroupBox("About")
+        al = QHBoxLayout(ag); al.setSpacing(14)
+        al.setContentsMargins(10,10,10,10)
+        al.addWidget(QLabel(f"{APP_VERSION}"))
         l = QLabel('<a href="https://claimscasino.com/terms" style="color:#FFD700;text-decoration:none;">Terms</a>')
         l.setOpenExternalLinks(True); al.addWidget(l)
         al.addWidget(QLabel("© 2026 Claims Casino"))
         bot_row.addWidget(ag)
-        ag.setMinimumHeight(42)
 
         bb = QHBoxLayout(); bb.setSpacing(8)
         cu = AnimatedButton("Check Updates", variant="gold"); cu.clicked.connect(self.check_updates_requested.emit); bb.addWidget(cu)
@@ -1913,6 +1933,36 @@ class SettingsTab(QWidget):
             combined.save_link_queue([])
         QMessageBox.information(self, "Reset", "All data cleared")
 
+    def _refresh_license(self):
+        lf = BASE_DIR / "license.dat"
+        if not lf.exists():
+            QMessageBox.warning(self, "License", "No license file found.")
+            return
+        with open(lf) as f: ld = json.load(f)
+        key = ld.get("key", "")
+        hwid = ld.get("hwid", "")
+        try:
+            r = combined.requests.post(LICENSE_SERVER_URL, json={"key": key, "hwid": hwid}, timeout=5)
+            if r.status_code == 200 and r.json().get("valid"):
+                QMessageBox.information(self, "License", "License is valid and active.")
+            else:
+                QMessageBox.warning(self, "License", "License rejected by server.")
+        except:
+            local = combined.validate_license_key(key)
+            if local.get("valid"):
+                QMessageBox.information(self, "License", "License valid (offline mode).")
+            else:
+                QMessageBox.warning(self, "License", f"License invalid: {local.get('reason','Unknown')}")
+
+    def _deactivate_license(self):
+        resp = QMessageBox.question(self, "Deactivate",
+            "Remove license from this machine?\nYou will need to re-enter your key to continue.",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        if resp != QMessageBox.StandardButton.Yes: return
+        lf = BASE_DIR / "license.dat"
+        if lf.exists(): lf.unlink()
+        QMessageBox.information(self, "Deactivated", "License removed. Restart to activate again.")
+
 # ═══════════════════════════════════════════════════════════════
 # MAIN WINDOW
 # ═══════════════════════════════════════════════════════════════
@@ -1997,7 +2047,7 @@ class MainWindow(QMainWindow):
         sidebar_w.setObjectName("sidebar")
         sl = QVBoxLayout(sidebar_w); sl.setContentsMargins(0,0,0,0); sl.setSpacing(0)
 
-        nav_items = ["\U0001f4cb  License", "\U0001f4ca  Dashboard", "\U0001f464  Profiles", "\U0001f3b0  Daily SC", "\U0001f3ac  Streamer Sniper", "\U0001f517  Link Automation"]
+        nav_items = ["📊  Dashboard", "👤  Profiles", "🎰  Daily SC", "🎬  Streamer Sniper", "🔗  Link Automation", "⚙  Settings"]
         self.nav_btns = []
         for i, text in enumerate(nav_items):
             b = QPushButton(text)
@@ -2006,21 +2056,12 @@ class MainWindow(QMainWindow):
             sl.addWidget(b)
             self.nav_btns.append(b)
 
+        
         sl.addStretch()
-
-        sep = QFrame()
-        sep.setObjectName("navsep")
-        sl.addWidget(sep)
-
-        self.settings_btn = QPushButton("\u2699  Settings")
-        self.settings_btn.setCheckable(True)
-        self.settings_btn.clicked.connect(lambda: self.on_page_change(6))
-        sl.addWidget(self.settings_btn)
 
         bl.addWidget(sidebar_w)
 
         self.stack = QStackedWidget()
-        self.lt = LicenseTab()
         self.dt = DashboardTab()
         self.pt = ProfilesTab()
         self.dst = DailySCTab()
@@ -2029,13 +2070,12 @@ class MainWindow(QMainWindow):
         self.ste = SettingsTab()
         # Wire up check updates
         self.ste.check_updates_requested.connect(lambda: self.check_up(silent=False))
-        self.stack.addWidget(self.lt)   # 0
-        self.stack.addWidget(self.dt)   # 1
-        self.stack.addWidget(self.pt)   # 2
-        self.stack.addWidget(self.dst)  # 3
-        self.stack.addWidget(self.sst)  # 4
-        self.stack.addWidget(self.lat)  # 5
-        self.stack.addWidget(self.ste)  # 6
+        self.stack.addWidget(self.dt)   # 0 — Dashboard
+        self.stack.addWidget(self.pt)   # 1 — Profiles
+        self.stack.addWidget(self.dst)  # 2 — Daily SC
+        self.stack.addWidget(self.sst)  # 3 — Streamer Sniper
+        self.stack.addWidget(self.lat)  # 4 — Link Automation
+        self.stack.addWidget(self.ste)  # 5 — Settings
         bl.addWidget(self.stack)
         self.on_page_change(0)
 
@@ -2088,9 +2128,8 @@ class MainWindow(QMainWindow):
     def on_page_change(self, idx):
         if idx < 0 or idx >= self.stack.count(): return
         self.stack.setCurrentIndex(idx)
-        for i, btn in enumerate(self.nav_btns):
-            btn.setChecked(i == idx)
-        self.settings_btn.setChecked(idx == 6)
+        for btn in self.nav_btns:
+            btn.setChecked(self.nav_btns.index(btn) == idx)
 
     def refresh_st(self):
         with combined.state_lock: s = dict(combined.state)
