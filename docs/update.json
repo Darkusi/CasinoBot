@@ -1,6 +1,6 @@
 {
     "version": "v1.2.0",
-    "url": "https://github.com/Darkusi/CasinoBot/releases/download/v1.2.0/CasinoBot.exe",
-    "size": 50964964,
-    "notes": "v1.2.0 - Removed License tab (moved to Settings), inline Profiles form, full spacing polish, fixed Flask import error"
+    "url": "https://github.com/Darkusi/CasinoBot/releases/download/v1.2.0/CasinoBot-Setup-1.2.0.exe",
+    "size": 52158121,
+    "notes": "v1.2.0 - Full Inno Setup installer, License in Settings, inline Profiles form, spacing polish"
 }

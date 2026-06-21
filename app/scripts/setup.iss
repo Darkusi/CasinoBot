@@ -35,8 +35,11 @@ DisableFinishedPage=no
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "..\build\CasinoBot.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\scripts\CasinoBot.cer"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\CasinoBot.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\.env"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\sites.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\license_keys.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\assets\logo.png"; DestDir: "{app}\assets"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"
@@ -45,7 +48,3 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; WorkingDi
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Flags: nowait skipifsilent
-Filename: "certutil"; Parameters: "-addstore TrustedPublisher ""{app}\CasinoBot.cer"""; Flags: runhidden postinstall
-
-[UninstallRun]
-Filename: "certutil"; Parameters: "-delstore TrustedPublisher ""{app}\CasinoBot.cer"""; Flags: runhidden
