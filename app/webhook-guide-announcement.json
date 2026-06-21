@@ -1,0 +1,22 @@
+{
+  "username": "Casino Bonus Monitor",
+  "avatar_url": "https://i.imgur.com/AfFp7pu.png",
+  "embeds": [
+    {
+      "title": "📖 │ User Guide Available",
+      "description": "A full user guide is now available online covering all casino features:",
+      "color": 10175918,
+      "fields": [
+        {
+          "name": "📋 │ What's Inside",
+          "value": "• Command reference (`/status`, `/claim`, `/setcookie`)\n• Cookie-based claiming setup\n• Streamer alerts configuration\n• Auto-claim schedule & history\n• FAQ & troubleshooting",
+          "inline": false
+        }
+      ],
+      "url": "https://claimscasino.com/guide",
+      "footer": {
+        "text": "Claim City 2026 ©"
+      }
+    }
+  ]
+}

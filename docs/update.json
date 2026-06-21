@@ -1,6 +1,6 @@
 {
     "version": "v1.2.0",
     "url": "https://github.com/Darkusi/CasinoBot/releases/download/v1.2.0/CasinoBot.exe",
-    "size": 50965046,
-    "notes": "v1.2.0 - Removed License tab (moved to Settings), inline Profiles form, full spacing polish, no more popup dialogs for creds"
+    "size": 50964964,
+    "notes": "v1.2.0 - Removed License tab (moved to Settings), inline Profiles form, full spacing polish, fixed Flask import error"
 }

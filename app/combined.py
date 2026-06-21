@@ -421,6 +421,41 @@ def post_to_claims_discord(title, extracted_link, created_utc, sc_amount=None):
         print(f"[{datetime.now()}] Claims webhook error: {e}")
         return False
 
+def post_guide_webhook():
+    """Send the user guide announcement to the claims Discord channel."""
+    try:
+        embed = {
+            "title": "\U0001f4d6 \u2502 User Guide Available",
+            "description": "A full user guide is now available online covering all casino features:",
+            "color": 0x9B4DAE,
+            "fields": [
+                {
+                    "name": "\U0001f4cb \u2502 What's Inside",
+                    "value": (
+                        "\u2022 Command reference (`/status`, `/claim`, `/setcookie`)\n"
+                        "\u2022 Cookie-based claiming setup\n"
+                        "\u2022 Streamer alerts configuration\n"
+                        "\u2022 Auto-claim schedule & history\n"
+                        "\u2022 FAQ & troubleshooting"
+                    ),
+                    "inline": False,
+                }
+            ],
+            "url": "https://claimscasino.com/guide",
+            "footer": {"text": "Claim City 2026 \u00a9"},
+        }
+        payload = {
+            "username": "Casino Bonus Monitor",
+            "avatar_url": "https://i.imgur.com/AfFp7pu.png",
+            "embeds": [embed],
+        }
+        requests.post(CLAIMS_WEBHOOK, json=payload, timeout=10)
+        print(f"[{datetime.now()}] Posted guide announcement webhook")
+        return True
+    except Exception as e:
+        print(f"[{datetime.now()}] Guide webhook error: {e}")
+        return False
+
 def load_claim_schedule():
     if CLAIM_SCHEDULE_FILE.exists():
         with open(CLAIM_SCHEDULE_FILE, 'r') as f:
