@@ -34,11 +34,21 @@ LICENSES_FILE = DATA_DIR / "licenses.json"
 # Default admin key for managing licenses
 ADMIN_KEY = os.environ.get("ACTIVATION_ADMIN_KEY", "CHANGE-ME-PLEASE")
 
+# Seed licenses from env var (for ephemeral filesystems like Render free tier)
+_SEED_DATA = os.environ.get("LICENSES_JSON_DATA", "")
+
 
 def load_licenses():
     if LICENSES_FILE.exists():
         with open(LICENSES_FILE) as f:
             return json.load(f)
+    if _SEED_DATA:
+        try:
+            data = json.loads(_SEED_DATA)
+            save_licenses(data)
+            return data
+        except:
+            pass
     return {}
 
 
