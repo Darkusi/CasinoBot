@@ -69,8 +69,9 @@ QFrame, QGroupBox, QTabWidget, QStackedWidget { background: transparent; }
     border: none; border-right: 1px solid rgba(255,255,255,0.04); min-width: 200px; max-width: 200px;
 }
 #sidebar QPushButton {
-    background: transparent; color: #888; border: none; border-radius: 0; text-align: left;
-    padding: 12px 20px; font-size: 13px; font-weight: 500; border-left: 2px solid transparent;
+    background: transparent; color: #888; border: none; border-radius: 6px; text-align: left;
+    padding: 10px 16px; margin: 1px 8px; font-size: 13px; font-weight: 500;
+    border-left: 2px solid transparent;
 }
 #sidebar QPushButton:hover { background: rgba(255,255,255,0.03); color: #ccc; }
 #sidebar QPushButton:checked {
@@ -101,8 +102,8 @@ QPushButton#success:hover { background: #047857; }
 QGroupBox, #sc {
     background: rgba(22,22,34,0.55);
     border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 10px;
-    padding: 12px 12px 10px;
+    border-radius: 14px;
+    padding: 14px 14px 12px;
     font-weight: 500; font-size: 11px; color: #888;
 }
 QGroupBox:hover, #sc:hover { background: rgba(24,24,38,0.7); border-color: rgba(255,215,0,0.15); }
@@ -123,7 +124,7 @@ QCheckBox::indicator:checked { background: #FFD700; border-color: #FFD700; }
 /* ---- Tables ---- */
 QTableWidget {
     background: rgba(255,255,255,0.015); color: #e8e8ed; border: 1px solid rgba(255,255,255,0.04);
-    border-radius: 10px; gridline-color: rgba(255,255,255,0.015); font-size: 13px;
+    border-radius: 14px; gridline-color: rgba(255,255,255,0.015); font-size: 13px;
 }
 QTableWidget::item { padding: 8px 10px; }
 QTableWidget::item:selected { background: rgba(255,215,0,0.05); color: #FFD700; }
@@ -149,9 +150,9 @@ QStatusBar { background: rgba(0,0,0,0.3); color: #666; border-top: 1px solid rgb
 QStatusBar::item { border: none; }
 
 /* ---- Scrollbars ---- */
-QScrollBar:vertical { background: transparent; width: 5px; }
-QScrollBar::handle:vertical { background: rgba(255,255,255,0.06); border-radius: 3px; min-height: 24px; }
-QScrollBar::handle:vertical:hover { background: rgba(255,255,255,0.12); }
+QScrollBar:vertical { background: transparent; width: 6px; }
+QScrollBar::handle:vertical { background: rgba(255,255,255,0.08); border-radius: 4px; min-height: 24px; }
+QScrollBar::handle:vertical:hover { background: rgba(255,255,255,0.15); }
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
 
 /* ---- Splitter ---- */
@@ -179,10 +180,13 @@ class StatCard(QFrame):
     def __init__(self, label, initial="0", color="#10b981"):
         super().__init__()
         self.setObjectName("sc")
-        self.setStyleSheet(f"#sc{{background:rgba(22,22,34,0.5);border:1px solid rgba(255,255,255,0.04);border-radius:12px;padding:16px;}}"
-                           f"#sc:hover{{border-color:rgba(255,215,0,0.2);background:rgba(24,24,38,0.65);}}")
+        self.setStyleSheet(
+            f"#sc{{background:rgba(22,22,34,0.5);border:1px solid rgba(255,255,255,0.04);"
+            f"border-radius:16px;padding:0;border-top:2px solid {color};}}"
+            f"#sc:hover{{border-color:rgba(255,215,0,0.2);background:rgba(24,24,38,0.65);}}"
+        )
         lo = QVBoxLayout()
-        lo.setContentsMargins(12,10,12,10)
+        lo.setContentsMargins(14, 12, 14, 12)
         lo.setSpacing(4)
         self.v = QLabel(initial)
         self.v.setObjectName("statv")
@@ -273,11 +277,29 @@ class LicenseDialog(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Claims Casino - Automation Suite")
-        self.setFixedSize(600, 480)
+        self.setFixedSize(640, 540)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.Dialog)
-        lo = QVBoxLayout()
-        lo.setContentsMargins(40, 44, 40, 40)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setStyleSheet("")
+
+        # Outer glass card
+        outer = QFrame()
+        outer.setObjectName("licCard")
+        outer.setStyleSheet(
+            "#licCard{background:rgba(16,16,22,0.95);border:1px solid rgba(255,215,0,0.12);"
+            "border-radius:28px;}"
+        )
+        lo = QVBoxLayout(outer)
+        lo.setContentsMargins(44, 40, 44, 40)
         lo.setSpacing(16)
+
+        # Drag hint dot
+        dh = QLabel()
+        dh.setFixedSize(32, 4)
+        dh.setStyleSheet("background:rgba(255,255,255,0.08);border-radius:2px;")
+        dh.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        dhl = QHBoxLayout(); dhl.addStretch(); dhl.addWidget(dh); dhl.addStretch()
+        lo.addLayout(dhl)
 
         logo_path = Path(getattr(sys, "_MEIPASS", BASE_DIR)) / "assets" / "logo.png"
         if logo_path.exists():
@@ -289,38 +311,57 @@ class LicenseDialog(QDialog):
 
         t = QLabel("CLAIMS CASINO")
         t.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        t.setStyleSheet("font-size:36px;font-weight:800;color:#FFD700;letter-spacing:3px;")
+        t.setStyleSheet("font-size:36px;font-weight:800;color:#FFD700;letter-spacing:3px;background:transparent;")
         lo.addWidget(t)
 
         s = QLabel("License Activation Required")
         s.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        s.setStyleSheet("font-size:14px;color:#888;")
+        s.setStyleSheet("font-size:14px;color:#888;background:transparent;")
         lo.addWidget(s)
-        lo.addSpacing(12)
+        lo.addSpacing(8)
 
         self.k = QLineEdit()
         self.k.setPlaceholderText("Enter license key (XXXX-XXXX-XXXX-XXXX)")
         self.k.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.k.setStyleSheet("font-size:20px;font-weight:700;letter-spacing:2px;padding:16px;border-radius:12px;")
+        self.k.setStyleSheet(
+            "font-size:20px;font-weight:700;letter-spacing:2px;padding:16px 20px;"
+            "border-radius:16px;background:rgba(255,255,255,0.02);color:#e8e8ed;"
+            "border:1px solid rgba(255,255,255,0.08);"
+            "selection-background-color:rgba(255,215,0,0.2);"
+        )
         lo.addWidget(self.k)
 
         self.st = QLabel("")
         self.st.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.st.setStyleSheet("font-size:13px;")
+        self.st.setWordWrap(True)
+        self.st.setStyleSheet("font-size:13px;background:transparent;padding:4px 0;")
         lo.addWidget(self.st)
 
         b = QPushButton("ACTIVATE LICENSE")
-        b.setObjectName("gold")
-        b.setStyleSheet("font-size:17px;font-weight:700;padding:16px;border-radius:12px;letter-spacing:2px;")
+        b.setCursor(Qt.CursorShape.PointingHandCursor)
+        b.setStyleSheet(
+            "QPushButton{background:qlineargradient(x1:0,y1:0,x2:1,y2:1,"
+            "stop:0 #FFD700,stop:1 #F59E0B);color:#0a0a0f;border:none;"
+            "font-weight:700;border-radius:16px;padding:18px;font-size:17px;letter-spacing:2px;}"
+            "QPushButton:hover{background:qlineargradient(x1:0,y1:0,x2:1,y2:1,"
+            "stop:0 #ffe44d,stop:1 #fbbf24);}"
+            "QPushButton:pressed{background:qlineargradient(x1:0,y1:0,x2:1,y2:1,"
+            "stop:0 #d4b000,stop:1 #d49000);}"
+        )
         b.clicked.connect(self.go)
         lo.addWidget(b)
         lo.addStretch()
 
         i = QLabel("Don't have a license? Contact support on Discord.")
         i.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        i.setStyleSheet("color:#555;font-size:11px;")
+        i.setStyleSheet("color:#555;font-size:11px;background:transparent;")
         lo.addWidget(i)
-        self.setLayout(lo)
+
+        # Wrap in a transparent host layout
+        host = QVBoxLayout(self)
+        host.setContentsMargins(16, 16, 16, 16)
+        host.addWidget(outer)
+
         self.k.returnPressed.connect(self.go)
         self.dragPos = None
 
@@ -341,21 +382,24 @@ class LicenseDialog(QDialog):
     def go(self):
         key = self.k.text().strip()
         if not key:
-            self.st.setText("Enter a license key.")
-            self.st.setStyleSheet("color:#ef4444;font-size:13px;")
+            self.st.setText("⚠ Enter a license key.")
+            self.st.setStyleSheet("color:#f59e0b;font-size:13px;font-weight:600;background:transparent;")
             return
 
-        # Anti-debug check
         if not combined.check_anti_debug():
             self.st.setText("Debugger detected. Exiting.")
-            self.st.setStyleSheet("color:#ef4444;font-size:13px;")
+            self.st.setStyleSheet("color:#ef4444;font-size:13px;font-weight:600;background:transparent;")
             QTimer.singleShot(2000, self.close)
             return
 
-        # Try online activation first
+        self.st.setText("◇ Activating...")
+        self.st.setStyleSheet("color:#FFD700;font-size:13px;font-weight:600;background:transparent;")
+        self.k.setEnabled(False)
+        QApplication.processEvents()
+
         hwid = combined.get_hwid()
         try:
-            resp = combined.requests.post(LICENSE_SERVER_URL, json={"key": key, "hwid": hwid}, timeout=5)
+            resp = combined.requests.post(LICENSE_SERVER_URL, json={"key": key, "hwid": hwid}, timeout=8)
             if resp.status_code == 200:
                 data = resp.json()
                 if data.get("valid"):
@@ -364,15 +408,16 @@ class LicenseDialog(QDialog):
                     self.accept()
                     return
                 else:
-                    self.st.setText(data.get("reason", "License rejected by server."))
-                    self.st.setStyleSheet("color:#ef4444;font-size:13px;font-weight:600;")
+                    self.st.setText(f"✕ {data.get('reason', 'License rejected.')}")
+                    self.st.setStyleSheet("color:#ef4444;font-size:13px;font-weight:600;background:transparent;")
+                    self.k.setEnabled(True)
                     return
         except:
-            pass  # Server unreachable, fall through to local
+            pass
 
-        # Server unreachable — no local key fallback
-        self.st.setText("Activation server unreachable. Check your internet and try again.")
-        self.st.setStyleSheet("color:#ef4444;font-size:13px;font-weight:600;")
+        self.st.setText("✕ Server unreachable. Check internet and try again.")
+        self.st.setStyleSheet("color:#ef4444;font-size:13px;font-weight:600;background:transparent;")
+        self.k.setEnabled(True)
 
 # ═══════════════════════════════════════════════════════════════
 # CLAIM WORKER THREAD
@@ -462,13 +507,14 @@ class DashboardTab(QWidget):
     def __init__(self):
         super().__init__()
         lo = QVBoxLayout()
-        lo.setContentsMargins(12,12,12,12)
+        lo.setContentsMargins(12, 12, 12, 12)
         lo.setSpacing(10)
 
         t = QLabel("Dashboard")
         t.setObjectName("title")
         lo.addWidget(t)
 
+        # Stat cards row
         g = QHBoxLayout()
         g.setSpacing(12)
         self.c1 = StatCard("Total SC Claimed", "$0.00", "#22c55e")
@@ -478,29 +524,36 @@ class DashboardTab(QWidget):
         g.addWidget(self.c1); g.addWidget(self.c2); g.addWidget(self.c3); g.addWidget(self.c4)
         lo.addLayout(g)
 
-        # Control center
-        mc = QGroupBox("Dashboard")
-        mcl = QVBoxLayout(); mcl.setContentsMargins(8,8,8,8); mcl.setSpacing(8)
+        # Control header bar (frosted glass)
+        ctrl = QFrame()
+        ctrl.setObjectName("ctrlBar")
+        ctrl.setStyleSheet(
+            "#ctrlBar{background:rgba(22,22,34,0.5);border:1px solid rgba(255,255,255,0.04);"
+            "border-radius:16px;padding:8px 14px;}"
+            "#ctrlBar:hover{border-color:rgba(255,215,0,0.12);}"
+        )
+        ctrl_lo = QHBoxLayout(ctrl); ctrl_lo.setContentsMargins(14, 8, 14, 8); ctrl_lo.setSpacing(14)
+
         self.master_btn = AnimatedButton("Start All", variant="success")
-        self.master_btn.setStyleSheet("font-size:15px;font-weight:700;padding:14px 32px;border-radius:10px;")
+        self.master_btn.setStyleSheet("font-size:14px;font-weight:700;padding:10px 24px;border-radius:10px;")
         self.master_btn.clicked.connect(self.toggle_master)
-        mcl.addWidget(self.master_btn)
-        # Service indicators
-        sind = QHBoxLayout()
-        sind.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        ctrl_lo.addWidget(self.master_btn)
+
+        # Vertical separator
+        sep = QFrame(); sep.setFrameShape(QFrame.Shape.VLine)
+        sep.setStyleSheet("background:rgba(255,255,255,0.04);max-width:1px;")
+        ctrl_lo.addWidget(sep)
+
+        # Service indicators inline
         self.inds = {}
         for name in ["Scanner","Claims","Streamer","Links"]:
             b = QLabel(f"\u25cf {name}")
-            b.setStyleSheet("color:#475569;font-size:12px;padding:4px 12px;")
+            b.setStyleSheet("color:#475569;font-size:12px;padding:4px 10px;")
             self.inds[name] = b
-            sind.addWidget(b)
-        mcl.addLayout(sind)
-        mc.setLayout(mcl); lo.addWidget(mc)
+            ctrl_lo.addWidget(b)
 
-        # System & Quick Access
-        row = QHBoxLayout()
-        sig = QGroupBox("System")
-        sil = QVBoxLayout(); sil.setContentsMargins(8,8,8,8); sil.setSpacing(6)
+        ctrl_lo.addStretch()
+
         lf = BASE_DIR / "license.dat"
         self.tier = "Premium"
         if lf.exists():
@@ -508,32 +561,86 @@ class DashboardTab(QWidget):
                 with open(lf) as f: ld = json.load(f)
                 self.tier = ld.get("tier","Premium")
             except: pass
-        self.sys_info = QLabel(f"{APP_VERSION}  |  {self.tier}  |  Scans: 0  |  Found: 0  |  Last: N/A")
-        self.sys_info.setStyleSheet("font-size:12px;color:#94a3b8;")
-        sil.addWidget(self.sys_info)
-        self.last_refresh_lbl = QLabel("Last ping: —")
-        self.last_refresh_lbl.setStyleSheet("font-size:11px;color:#64748b;")
-        sil.addWidget(self.last_refresh_lbl)
-        sig.setLayout(sil); row.addWidget(sig)
-        lo.addLayout(row)
+        sys_lbl = QLabel(f"{APP_VERSION}  |  {self.tier}")
+        sys_lbl.setStyleSheet("font-size:11px;color:#64748b;padding:0 6px;")
+        ctrl_lo.addWidget(sys_lbl)
 
-        lg = QGroupBox("Activity Log")
-        ll = QVBoxLayout(lg); ll.setContentsMargins(8, 8, 8, 8); ll.setSpacing(6)
-        hl = QHBoxLayout()
-        hl.addWidget(QLabel("Log"))
-        hl.addStretch()
+        lo.addWidget(ctrl)
+
+        # Chips row (system stats)
+        chip_lo = QHBoxLayout(); chip_lo.setSpacing(8)
+        self.chip_scans = self._chip("Scans: 0", "#64748b")
+        self.chip_found = self._chip("Found: 0", "#10b981")
+        self.chip_last = self._chip("Last: N/A", "#94a3b8")
+        self.last_refresh_lbl = QLabel("Last ping: —")
+        self.last_refresh_lbl.setStyleSheet("font-size:11px;color:#475569;padding:2px 8px;")
+        chip_lo.addWidget(self.chip_scans)
+        chip_lo.addWidget(self.chip_found)
+        chip_lo.addWidget(self.chip_last)
+        chip_lo.addWidget(self.last_refresh_lbl)
+        chip_lo.addStretch()
+        lo.addLayout(chip_lo)
+
+        # Quick actions row
+        qa = QHBoxLayout(); qa.setSpacing(8)
+        refresh_dash = AnimatedButton("Refresh Dashboard", variant="default")
+        refresh_dash.setFixedHeight(28)
+        refresh_dash.setStyleSheet("font-size:11px;padding:4px 12px;border-radius:6px;")
+        refresh_dash.clicked.connect(lambda: self.refresh())
+        chk_upd = AnimatedButton("Check Updates", variant="gold")
+        chk_upd.setFixedHeight(28)
+        chk_upd.setStyleSheet("font-size:11px;padding:4px 12px;border-radius:6px;")
+        chk_upd.clicked.connect(lambda: self._do_update_check())
+        qa.addWidget(refresh_dash)
+        qa.addWidget(chk_upd)
+        qa.addStretch()
+        lo.addLayout(qa)
+
+        # Activity Log (floating panel)
+        lg = QFrame()
+        lg.setObjectName("logFrame")
+        lg.setStyleSheet(
+            "#logFrame{background:rgba(22,22,34,0.35);border:1px solid rgba(255,255,255,0.04);"
+            "border-radius:14px;padding:0;}"
+        )
+        ll = QVBoxLayout(lg); ll.setContentsMargins(0, 0, 0, 0); ll.setSpacing(0)
+        lh = QFrame()
+        lh.setStyleSheet("background:transparent;")
+        lhl = QHBoxLayout(lh); lhl.setContentsMargins(12, 8, 12, 6); lhl.setSpacing(8)
+        log_title = QLabel("Activity Log")
+        log_title.setStyleSheet("font-size:12px;font-weight:600;color:#aaa;")
+        lhl.addWidget(log_title)
+        lhl.addStretch()
         cls = AnimatedButton("Clear")
-        cls.setFixedWidth(70)
+        cls.setFixedSize(60, 24)
+        cls.setStyleSheet("font-size:10px;padding:2px 8px;border-radius:4px;")
         cls.clicked.connect(lambda: self.logv.clear())
-        hl.addWidget(cls)
-        ll.addLayout(hl)
+        lhl.addWidget(cls)
+        ll.addWidget(lh)
         self.logv = QTextEdit()
         self.logv.setReadOnly(True)
-        self.logv.setMaximumHeight(100)
+        self.logv.setMaximumHeight(150)
+        self.logv.setStyleSheet(
+            "border:none;border-radius:0;background:rgba(0,0,0,0.2);"
+            "padding:8px 12px;font-size:11px;color:#94a3b8;"
+        )
         ll.addWidget(self.logv)
         lo.addWidget(lg)
         lo.addStretch()
         self.setLayout(lo)
+
+    def _chip(self, text, color):
+        lbl = QLabel(text)
+        lbl.setStyleSheet(
+            f"font-size:11px;color:{color};background:rgba(255,255,255,0.02);"
+            f"padding:3px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.03);"
+        )
+        return lbl
+
+    def _do_update_check(self):
+        w = self.window()
+        if hasattr(w, 'check_up'):
+            w.check_up(silent=False)
 
         self.running = False
         self.threads = []
@@ -607,7 +714,9 @@ class DashboardTab(QWidget):
         self.c4.set_val(f"{int(h)}h {int(m)}m")
         la = s.get('last_alert')
         last_title = la.get('title','N/A')[:40] if la else 'N/A'
-        self.sys_info.setText(f"{APP_VERSION}  |  {self.tier}  |  Scans: {s.get('scanned',0)}  |  Found: {s.get('found',0)}  |  Last: {last_title}")
+        self.chip_scans.setText(f"Scans: {s.get('scanned',0)}")
+        self.chip_found.setText(f"Found: {s.get('found',0)}")
+        self.chip_last.setText(f"Last: {last_title}")
         self.last_refresh_lbl.setText(f"Last ping: {datetime.now():%H:%M:%S}")
         st = s.get("bot_status","offline")
         if st=="online":

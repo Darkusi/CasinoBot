@@ -45,5 +45,25 @@ Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{a
 Name: "{group}\Uninstall {#MyAppName}"; Filename: "{uninstallexe}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"
 
+[Code]
+var
+  LaunchCheck: TNewCheckBox;
+
+procedure InitializeWizard;
+begin
+  LaunchCheck := TNewCheckBox.Create(WizardForm);
+  LaunchCheck.Parent := WizardForm.FinishedPage;
+  LaunchCheck.Caption := 'Launch Claims Casino Automation Suite';
+  LaunchCheck.Checked := True;
+  LaunchCheck.Left := WizardForm.FinishedPage.Left + 40;
+  LaunchCheck.Top := WizardForm.FinishedPage.Top + 136;
+  LaunchCheck.Width := 300;
+end;
+
+function LaunchApp: Boolean;
+begin
+  Result := LaunchCheck.Checked;
+end;
+
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Flags: nowait skipifsilent
+Filename: "{app}\{#MyAppExeName}"; Flags: nowait skipifsilent; Check: LaunchApp
