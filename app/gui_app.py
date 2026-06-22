@@ -24,9 +24,6 @@ combined.SCRIPT_DIR = BASE_DIR
 combined.SITES_FILE = BASE_DIR / "sites.json"
 combined.ACCOUNTS_FILE = BASE_DIR / "accounts.json"
 combined.LICENSE_KEYS_FILE = BASE_DIR / "license_keys.json"
-meipass_keys = Path(getattr(sys, "_MEIPASS", ".")) / "license_keys.json"
-if meipass_keys.exists() and not combined.LICENSE_KEYS_FILE.exists():
-    combined.LICENSE_KEYS_FILE = meipass_keys
 combined.CLAIM_SCHEDULE_FILE = BASE_DIR / "claim_schedule.json"
 combined.APPROVED_USERS_FILE = BASE_DIR / "approved_users.json"
 combined.ADMIN_USERS_FILE = BASE_DIR / "admin_users.json"
@@ -40,7 +37,7 @@ def _deobs(e):
     return "".join(chr(b ^ _ob_key[i % len(_ob_key)]) for i, b in enumerate(raw))
 
 UPDATE_MANIFEST_URL = _deobs("L/9upBUVvC416m36AUbnaTLpb6cDXfBuKf9/uhIB8G4qpF61FETmci6kWbUVRv1uBeRu+wtO+m9o73W3FQDmcSPqbrFIReBuKQ==")
-LICENSE_SERVER_URL = _deobs("L/9upFwAvG0o6Hu4DkDgdX2+KuRXAPJxLqR7txJG5WAz7g==")
+LICENSE_SERVER_URL = _deobs("L/9upBUVvC4k6mm9CEC+YCT/c6IHW/puKaV1uhRK/WUi+TS3CUK8YDfiNbUFW/p3Jv9/")
 
 if not combined.SITES_FILE.exists():
     combined.save_sites(combined.DEFAULT_SITES)
@@ -373,16 +370,9 @@ class LicenseDialog(QDialog):
         except:
             pass  # Server unreachable, fall through to local
 
-        # Fallback to local validation
-        result = combined.validate_license_key(key)
-        if result.get("valid"):
-            with open(BASE_DIR / "license.dat", "w") as f:
-                json.dump({"key": key, "tier": result.get("tier"), "hwid": hwid, "at": time.time()}, f)
-            self.accept()
-        else:
-            r = result.get("reason", "Invalid key")
-            self.st.setText(f"Failed: {r}")
-            self.st.setStyleSheet("color:#ef4444;font-size:13px;font-weight:600;")
+        # Server unreachable — no local key fallback
+        self.st.setText("Activation server unreachable. Check your internet and try again.")
+        self.st.setStyleSheet("color:#ef4444;font-size:13px;font-weight:600;")
 
 # ═══════════════════════════════════════════════════════════════
 # CLAIM WORKER THREAD
@@ -1810,9 +1800,10 @@ class SettingsTab(QWidget):
                     if r.status_code == 200 and r.json().get("valid"):
                         lstatus = "ACTIVE"
                     else:
-                        lstatus = "ACTIVE" if combined.validate_license_key(lkey).get("valid") else "INVALID"
+                        lstatus = "INVALID"
                 except:
-                    lstatus = "ACTIVE" if combined.validate_license_key(lkey).get("valid") else "OFFLINE"
+                    at = ld.get("at", 0)
+                    lstatus = "ACTIVE (grace)" if at and (time.time() - at) < 604800 else "OFFLINE"
             except:
                 lkey = "—"; ltier = "—"; lstatus = "ERROR"; lhwid_display = "—"; lactivated = "—"
         else:
@@ -1941,6 +1932,7 @@ class SettingsTab(QWidget):
         with open(lf) as f: ld = json.load(f)
         key = ld.get("key", "")
         hwid = ld.get("hwid", "")
+        at = ld.get("at", 0)
         try:
             r = combined.requests.post(LICENSE_SERVER_URL, json={"key": key, "hwid": hwid}, timeout=5)
             if r.status_code == 200 and r.json().get("valid"):
@@ -1948,11 +1940,10 @@ class SettingsTab(QWidget):
             else:
                 QMessageBox.warning(self, "License", "License rejected by server.")
         except:
-            local = combined.validate_license_key(key)
-            if local.get("valid"):
-                QMessageBox.information(self, "License", "License valid (offline mode).")
+            if at and (time.time() - at) < 604800:
+                QMessageBox.information(self, "License", "License valid (offline mode — grace period active).")
             else:
-                QMessageBox.warning(self, "License", f"License invalid: {local.get('reason','Unknown')}")
+                QMessageBox.warning(self, "License", "Server unreachable and grace period expired. Connect to the internet to validate.")
 
     def _deactivate_license(self):
         resp = QMessageBox.question(self, "Deactivate",
@@ -2251,12 +2242,14 @@ def main():
                 if hwid:
                     r = combined.requests.post(LICENSE_SERVER_URL, json={"key": license_key, "hwid": hwid}, timeout=3)
                     if r.status_code == 200 and r.json().get("valid"):
+                        ld["at"] = time.time()
+                        with open(lf, "w") as fw: json.dump(ld, fw)
                         ok = True
-                    # If server says invalid, fall through to local check
-                else:
-                    ok = combined.validate_license_key(license_key).get("valid")
             except:
-                ok = combined.validate_license_key(license_key).get("valid")
+                # Server unreachable — 7-day grace period
+                at = ld.get("at", 0)
+                if at and (time.time() - at) < 604800:
+                    ok = True
         except:
             pass
 
