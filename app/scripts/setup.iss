@@ -51,19 +51,27 @@ var
 
 procedure InitializeWizard;
 begin
-  LaunchCheck := TNewCheckBox.Create(WizardForm);
-  LaunchCheck.Parent := WizardForm.FinishedPage;
-  LaunchCheck.Caption := 'Launch Claims Casino Automation Suite';
-  LaunchCheck.Checked := True;
-  LaunchCheck.Left := WizardForm.FinishedPage.Left + 40;
-  LaunchCheck.Top := WizardForm.FinishedPage.Top + 136;
-  LaunchCheck.Width := 300;
+  if not WizardSilent then
+  begin
+    LaunchCheck := TNewCheckBox.Create(WizardForm);
+    LaunchCheck.Parent := WizardForm.FinishedPage;
+    LaunchCheck.Caption := 'Launch Claims Casino Automation Suite';
+    LaunchCheck.Checked := True;
+    LaunchCheck.Left := 40;
+    LaunchCheck.Top := WizardForm.FinishedPage.Height - 60;
+    LaunchCheck.Width := 300;
+  end;
 end;
 
 function LaunchApp: Boolean;
 begin
-  Result := LaunchCheck.Checked;
+  if WizardSilent then
+    Result := False
+  else if LaunchCheck <> nil then
+    Result := LaunchCheck.Checked
+  else
+    Result := True;
 end;
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Flags: nowait skipifsilent; Check: LaunchApp
+Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall; Check: LaunchApp
