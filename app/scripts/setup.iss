@@ -38,7 +38,6 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Source: "..\dist\CasinoBot.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\.env"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\sites.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\dist\license_keys.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\assets\logo.png"; DestDir: "{app}\assets"; Flags: ignoreversion
 
 [Icons]
