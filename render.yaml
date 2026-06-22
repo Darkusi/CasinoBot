@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: casino-activation
+    env: python
+    buildCommand: pip install flask gunicorn
+    startCommand: gunicorn app.activation_server:app --bind 0.0.0.0:$PORT --workers 2 --timeout 30
+    envVars:
+      - key: ACTIVATION_ADMIN_KEY
+        value: lzNfQV8HBYxv3Wy6gDT0nLPpuIOeim1F
+    plan: free
